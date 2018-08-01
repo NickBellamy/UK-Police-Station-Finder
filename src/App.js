@@ -7,11 +7,18 @@ import { getForces } from './PoliceAPI';
 
 class App extends Component {
   state = {
-    forces: []
+    forces: [],
+    currentArea: ''
   };
 
-  componentWillMount() {
-    getForces().then(results => this.setState({ forces: results.map(force => force.id) }));
+  setCurrentArea = area => {
+    this.setState({ currentArea: area });
+  };
+
+  componentDidMount() {
+    getForces().then(results =>
+      this.setState({ forces: results.map(force => force.id) })
+    );
   }
 
   render() {
@@ -19,7 +26,10 @@ class App extends Component {
       <div className="App">
         <Header />
         <div id="content">
-          <FilterControls forceNames={this.state.forces} />
+          <FilterControls
+            forceNames={this.state.forces}
+            setCurrentArea={this.setCurrentArea}
+          />
           <Map />
         </div>
       </div>

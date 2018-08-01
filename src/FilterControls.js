@@ -4,16 +4,17 @@ import LocationSelector from './LocationSelector';
 import FilterByCrime from './FilterByCrime';
 import NeighbourhoodInfo from './NeighbourhoodInfo';
 
-const FilterControls = ({ forceNames }) => (
+const FilterControls = ({ forceNames, setCurrentArea }) => (
   <div>
-    <LocationSelector forceNames={forceNames} />
+    <LocationSelector forceNames={forceNames} setCurrentArea={setCurrentArea} />
     <FilterByCrime />
     <NeighbourhoodInfo />
   </div>
 );
 
 FilterControls.propTypes = {
-  forceNames: PropTypes.array.isRequired
+  forceNames: PropTypes.array.isRequired,
+  setCurrentArea: PropTypes.func.isRequired
 };
 
 export default FilterControls;

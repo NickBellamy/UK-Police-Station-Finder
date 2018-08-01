@@ -1,8 +1,9 @@
 import React from 'react';
+import LocationSelector from './LocationSelector';
 
 const FilterControls = () => (
   <div>
-      Controls go in here...
+    <LocationSelector />
   </div>
 );
 

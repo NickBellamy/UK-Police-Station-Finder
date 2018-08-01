@@ -20,9 +20,9 @@ const NeighbourhoodInfo = () => (
       value="local"
       checked
     />
-    <label for="local">Locally</label>
+    <label htmlFor="local">Locally</label>
     <input type="radio" id="national" name="areaComparison" value="national" />
-    <label for="national">Nationally</label>
+    <label htmlFor="national">Nationally</label>
   </div>
 );
 

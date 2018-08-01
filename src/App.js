@@ -5,14 +5,13 @@ import Map from './Map';
 import './App.css';
 import { getForces } from './PoliceAPI';
 
-class App extends Component {   
+class App extends Component {
   state = {
     forces: []
   };
 
   componentWillMount() {
-    getForces()
-    .then(results => this.setState({forces: results}));
+    getForces().then(results => this.setState({ forces: results.map(force => force.id) }));
   }
 
   render() {
@@ -20,7 +19,7 @@ class App extends Component {
       <div className="App">
         <Header />
         <div id="content">
-          <FilterControls />
+          <FilterControls forceNames={this.state.forces} />
           <Map />
         </div>
       </div>

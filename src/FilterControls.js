@@ -6,6 +6,7 @@ import NeighbourhoodInfo from './NeighbourhoodInfo';
 
 const FilterControls = ({
   crimeCategories,
+  currentNeighbourhoods,
   forceNames,
   setCurrentArea,
   setCurrentCrime
@@ -16,12 +17,13 @@ const FilterControls = ({
       crimeCategories={crimeCategories}
       setCurrentCrime={setCurrentCrime}
     />
-    <NeighbourhoodInfo />
+    <NeighbourhoodInfo currentNeighbourhoods={currentNeighbourhoods} />
   </div>
 );
 
 FilterControls.propTypes = {
   crimeCategories: PropTypes.array.isRequired,
+  currentNeighbourhoods: PropTypes.array.isRequired,
   forceNames: PropTypes.array.isRequired,
   setCurrentArea: PropTypes.func.isRequired,
   setCurrentCrime: PropTypes.func.isRequired

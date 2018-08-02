@@ -1,16 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const NeighbourhoodInfo = () => (
+const NeighbourhoodInfo = ({ currentNeighbourhoods }) => (
   <div>
     <h2>Neighbourhoods</h2>
     <ul>
-      <li>Neighbourhood1: 100</li>
-      <li>Neighbourhood2: 98</li>
-      <li>Neighbourhood3: 90</li>
-      <li>Neighbourhood4: 50</li>
-      <li>Neighbourhood5: 49</li>
-      <li>Neighbourhood6: 30</li>
-      <li>Neighbourhood7: 10</li>
+      {currentNeighbourhoods.map(neighbourhood => (
+        <li key={neighbourhood.id}>{neighbourhood.name}</li>
+      ))}
     </ul>
     <p>Compare scores:</p>
     <input
@@ -25,5 +22,9 @@ const NeighbourhoodInfo = () => (
     <label htmlFor="national">Nationally</label>
   </div>
 );
+
+NeighbourhoodInfo.protoTypes = {
+  currentNeighbourhoods: PropTypes.array.isRequired
+};
 
 export default NeighbourhoodInfo;

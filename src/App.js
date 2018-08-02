@@ -3,18 +3,24 @@ import Header from './Header';
 import FilterControls from './FilterControls';
 import Map from './Map';
 import './App.css';
-import { getForces, getCrimes } from './PoliceAPI';
+import { getForces, getCrimes, getNeighbourhoods } from './PoliceAPI';
 
 class App extends Component {
   state = {
     forces: [],
     crimeCategories: [],
     currentArea: '',
+    currentNeighbourhoods: [],
     currentCrime: ''
   };
 
   setCurrentArea = area => {
-    this.setState({ currentArea: area });
+    getNeighbourhoods(area).then(neighbourhoods =>
+      this.setState({
+        currentArea: area,
+        currentNeighbourhoods: neighbourhoods
+      })
+    );
   };
 
   setCurrentCrime = crimeName => {
@@ -43,6 +49,7 @@ class App extends Component {
             forceNames={this.state.forces}
             setCurrentArea={this.setCurrentArea}
             setCurrentCrime={this.setCurrentCrime}
+            currentNeighbourhoods={this.state.currentNeighbourhoods}
           />
           <Map />
         </div>

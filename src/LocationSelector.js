@@ -7,7 +7,13 @@ const LocationSelector = ({ forceNames, setCurrentArea }) => (
     <input type="text" placeholder="Enter an address..." />
     <input type="button" value="Search" />
     <p>OR</p>
-    <select onChange={event => setCurrentArea(event.target.value)}>
+    <select
+      defaultValue="default"
+      onChange={event => setCurrentArea(event.target.value)}
+    >
+      <option disabled value="default">
+        ...select a region
+      </option>
       {forceNames.map(force => <option key={force}>{force}</option>)}
     </select>
   </div>

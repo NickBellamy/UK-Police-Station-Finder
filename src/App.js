@@ -4,6 +4,7 @@ import FilterControls from './FilterControls';
 import Map from './Map';
 import './App.css';
 import { getForces, getCrimes, getNeighbourhoods } from './PoliceAPI';
+//import apiConfig from './apiKeys';
 
 class App extends Component {
   state = {

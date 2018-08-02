@@ -1,20 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const FilterByCrime = () => (
+const FilterByCrime = ({ crimeCategories, setCurrentCrime }) => (
   <div>
     <h2>Filter by Crime</h2>
+    <select onChange={event => setCurrentCrime(event.target.value)}>
+      {crimeCategories.map(crime => (
+        <option key={crime.url}>{crime.name}</option>
+      ))}
+    </select>
     <ul>
       <li>
-        <input type="checkbox" id="crime1" />
-        <label htmlFor="crime1">Crime 1</label>
-      </li>
-      <li>
-        <input type="checkbox" id="crime2" />
-        <label htmlFor="crime2">Crime 2</label>
-      </li>
-    </ul>
-    <ul>
-    <li>
         <input type="checkbox" id="2015" />
         <label htmlFor="2015">2015</label>
       </li>
@@ -25,5 +21,10 @@ const FilterByCrime = () => (
     </ul>
   </div>
 );
+
+FilterByCrime.propTypes = {
+  crimeCategories: PropTypes.array.isRequired,
+  setCurrentCrime: PropTypes.func.isRequired
+};
 
 export default FilterByCrime;

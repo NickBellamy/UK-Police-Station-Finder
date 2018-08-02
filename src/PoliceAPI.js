@@ -13,4 +13,8 @@ export const getCrimes = () => (
 export const getNeighbourhoods = area => (
     fetch(`${api}/${area}/neighbourhoods`)
     .then(res => res.json())
+    .then(res => res.map(hood => 
+        ({name: hood.name.replace('&amp;', '&'),id: hood.id})
+      )
+    )
 )

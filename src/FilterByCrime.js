@@ -9,6 +9,8 @@ const FilterByCrime = ({ crimeCategories, setCurrentCrime }) => (
         <option key={crime.url}>{crime.name}</option>
       ))}
     </select>
+    {/* Specific date filtering doesn't seem possible with the
+        API at this point.  Will revisit at a later date
     <ul>
       <li>
         <input type="checkbox" id="2015" />
@@ -18,7 +20,7 @@ const FilterByCrime = ({ crimeCategories, setCurrentCrime }) => (
         <input type="checkbox" id="2016" />
         <label htmlFor="2016">2016</label>
       </li>
-    </ul>
+    </ul>*/}
   </div>
 );
 

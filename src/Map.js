@@ -10,19 +10,21 @@ import {
 class Map extends Component {
   render() {
     const CrimeMap = withScriptjs(
-      //Pass props in here..
-      withGoogleMap(() => (
+      withGoogleMap(props => (
         <GoogleMap
           defaultCenter={{ lat: 52.9548, lng: -1.1581 }}
           defaultZoom={6}
         >
-          <Marker position={{ lat: 52.9548, lng: -1.1581 }} />
+          {props.neighbourhoods.map(hood => (
+            <Marker key={hood.id} position={hood.location} />
+          ))}
         </GoogleMap>
       ))
     );
 
     return (
       <CrimeMap
+        neighbourhoods={this.props.currentNeighbourhoods}
         googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${
           apiConfig.googleMapsKey
         }`}

@@ -5,7 +5,7 @@ export const getForces = () => fetch(`${api}/forces`).then(res => res.json());
 export const getCrimes = () =>
   fetch(`${api}/crime-categories`).then(res => res.json());
 
-export const getNeighbourhoods = area => (
+export const getNeighbourhoods = area =>
   fetch(`${api}/${area}/neighbourhoods`)
     .then(res => res.json())
     .then(res => res.map(hood => hood.id))
@@ -17,7 +17,9 @@ export const getNeighbourhoods = area => (
       hoods.map(hood => ({
         id: hood.id,
         name: hood.name,
-        location: hood.centre
+        location: {
+          lat: parseFloat(hood.centre.latitude),
+          lng: parseFloat(hood.centre.longitude)
+        }
       }))
-    )
-);
+    );

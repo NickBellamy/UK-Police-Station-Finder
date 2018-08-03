@@ -52,7 +52,7 @@ class App extends Component {
             setCurrentCrime={this.setCurrentCrime}
             currentNeighbourhoods={this.state.currentNeighbourhoods}
           />
-          <Map />
+          <Map currentNeighbourhoods={this.state.currentNeighbourhoods} />
         </div>
       </div>
     );

@@ -4,7 +4,8 @@ import {
   withGoogleMap,
   withScriptjs,
   GoogleMap,
-  Marker
+  Marker,
+  InfoWindow
 } from 'react-google-maps';
 
 class Map extends Component {
@@ -16,7 +17,11 @@ class Map extends Component {
           defaultZoom={6}
         >
           {props.neighbourhoods.map(hood => (
-            <Marker key={hood.id} position={hood.location} />
+            <Marker key={hood.id} position={hood.location}>
+              <InfoWindow>
+                <span>{hood.name}</span>
+              </InfoWindow>
+            </Marker>
           ))}
         </GoogleMap>
       ))

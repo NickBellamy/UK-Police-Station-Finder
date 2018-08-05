@@ -9,7 +9,8 @@ const FilterControls = ({
   currentNeighbourhoods,
   forceNames,
   setCurrentArea,
-  setCurrentCrime
+  setCurrentCrime,
+  selectNeighbourhood
 }) => (
   <div>
     <LocationSelector forceNames={forceNames} setCurrentArea={setCurrentArea} />
@@ -17,11 +18,15 @@ const FilterControls = ({
       crimeCategories={crimeCategories}
       setCurrentCrime={setCurrentCrime}
     />
-    <NeighbourhoodInfo currentNeighbourhoods={currentNeighbourhoods} />
+    <NeighbourhoodInfo
+      currentNeighbourhoods={currentNeighbourhoods}
+      selectNeighbourhood={selectNeighbourhood}
+    />
   </div>
 );
 
 FilterControls.propTypes = {
+  selectNeighbourhood: PropTypes.func.isRequired,
   crimeCategories: PropTypes.array.isRequired,
   currentNeighbourhoods: PropTypes.array.isRequired,
   forceNames: PropTypes.array.isRequired,

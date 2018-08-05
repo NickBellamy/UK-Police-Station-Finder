@@ -54,6 +54,7 @@ class App extends Component {
             forceNames={this.state.forces}
             setCurrentArea={this.setCurrentArea}
             setCurrentCrime={this.setCurrentCrime}
+            selectNeighbourhood={this.selectNeighbourhood}
             currentNeighbourhoods={this.state.currentNeighbourhoods}
           />
           <Map

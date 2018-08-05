@@ -8,6 +8,10 @@ import {
   InfoWindow
 } from 'react-google-maps';
 
+//TODO: Toggling the infowindows on marker click causes a complete re-
+//render of the map.  I'm not entirely sure why this is, but it's not
+//ideal.  If I hsve time at the end of the project, I will revisit
+//this and try to make it add new markers without re-rendering the map
 class Map extends Component {
   render() {
     const CrimeMap = withScriptjs(
@@ -17,10 +21,18 @@ class Map extends Component {
           defaultZoom={6}
         >
           {props.neighbourhoods.map(hood => (
-            <Marker key={hood.id} position={hood.location}>
-              <InfoWindow>
-                <span>{hood.name}</span>
-              </InfoWindow>
+            <Marker
+              key={hood.id}
+              position={hood.location}
+              onClick={() => props.selectNeighbourhood(hood.id)}
+            >
+              {props.selectedNeighbourhood === hood.id ? (
+                <InfoWindow>
+                  <span>{hood.name}</span>
+                </InfoWindow>
+              ) : (
+                ''
+              )}
             </Marker>
           ))}
         </GoogleMap>
@@ -29,6 +41,8 @@ class Map extends Component {
 
     return (
       <CrimeMap
+        selectedNeighbourhood={this.props.selectedNeighbourhood}
+        selectNeighbourhood={this.props.selectNeighbourhood}
         neighbourhoods={this.props.currentNeighbourhoods}
         googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${
           apiConfig.googleMapsKey

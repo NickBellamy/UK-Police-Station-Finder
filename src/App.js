@@ -4,7 +4,6 @@ import FilterControls from './FilterControls';
 import Map from './Map';
 import './App.css';
 import { getForces, getCrimes, getNeighbourhoods } from './PoliceAPI';
-//import apiConfig from './apiKeys';
 
 class App extends Component {
   state = {
@@ -12,7 +11,8 @@ class App extends Component {
     crimeCategories: [],
     currentArea: '',
     currentNeighbourhoods: [],
-    currentCrime: ''
+    currentCrime: '',
+    selectedNeighbourhood: ''
   };
 
   setCurrentArea = area => {
@@ -29,6 +29,10 @@ class App extends Component {
       crime => crime.name === crimeName
     )[0];
     this.setState({ currentCrime });
+  };
+
+  selectNeighbourhood = neighbourhoodId => {
+    this.setState({ selectedNeighbourhood: neighbourhoodId });
   };
 
   componentDidMount() {
@@ -52,7 +56,11 @@ class App extends Component {
             setCurrentCrime={this.setCurrentCrime}
             currentNeighbourhoods={this.state.currentNeighbourhoods}
           />
-          <Map currentNeighbourhoods={this.state.currentNeighbourhoods} />
+          <Map
+            currentNeighbourhoods={this.state.currentNeighbourhoods}
+            selectNeighbourhood={this.selectNeighbourhood}
+            selectedNeighbourhood={this.state.selectedNeighbourhood}
+          />
         </div>
       </div>
     );

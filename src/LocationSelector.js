@@ -4,9 +4,6 @@ import PropTypes from 'prop-types';
 const LocationSelector = ({ forceNames, setCurrentArea }) => (
   <div>
     <h2>Location</h2>
-    <input type="text" placeholder="Enter an address..." />
-    <input type="button" value="Search" />
-    <p>OR</p>
     <select
       defaultValue="default"
       onChange={event => setCurrentArea(event.target.value)}

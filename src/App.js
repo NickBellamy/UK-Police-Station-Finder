@@ -3,15 +3,13 @@ import Header from './Header';
 import FilterControls from './FilterControls';
 import Map from './Map';
 import './App.css';
-import { getForces, getCrimes, getNeighbourhoods } from './PoliceAPI';
+import { getForces, getNeighbourhoods } from './PoliceAPI';
 
 class App extends Component {
   state = {
     forces: [],
-    crimeCategories: [],
     currentArea: '',
     currentNeighbourhoods: [],
-    currentCrime: '',
     selectedNeighbourhood: ''
   };
 
@@ -24,13 +22,6 @@ class App extends Component {
     );
   };
 
-  setCurrentCrime = crimeName => {
-    const currentCrime = this.state.crimeCategories.filter(
-      crime => crime.name === crimeName
-    )[0];
-    this.setState({ currentCrime });
-  };
-
   selectNeighbourhood = neighbourhoodId => {
     this.setState({ selectedNeighbourhood: neighbourhoodId });
   };
@@ -38,9 +29,6 @@ class App extends Component {
   componentDidMount() {
     getForces().then(results =>
       this.setState({ forces: results.map(force => force.id) })
-    );
-    getCrimes().then(results =>
-      this.setState({ crimeCategories: results, currentCrime: results[0] })
     );
   }
 
@@ -50,10 +38,8 @@ class App extends Component {
         <Header />
         <div id="content">
           <FilterControls
-            crimeCategories={this.state.crimeCategories}
             forceNames={this.state.forces}
             setCurrentArea={this.setCurrentArea}
-            setCurrentCrime={this.setCurrentCrime}
             selectNeighbourhood={this.selectNeighbourhood}
             currentNeighbourhoods={this.state.currentNeighbourhoods}
           />

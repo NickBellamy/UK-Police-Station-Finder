@@ -28,7 +28,15 @@ class Map extends Component {
             >
               {props.selectedNeighbourhood === hood.id ? (
                 <InfoWindow>
-                  <span>{hood.name}</span>
+                  <div>
+                    <span>{hood.name}</span>
+                    <ul>
+                        <li>website: {hood.website}</li>
+                      {Object.keys(hood.contact)
+                        .map(key => `${key}: ${hood.contact[key]}`)
+                        .map(contactType => <li>{contactType}</li>)}
+                    </ul>
+                  </div>
                 </InfoWindow>
               ) : (
                 ''

@@ -23,6 +23,7 @@ class Map extends Component {
           {props.neighbourhoods.map(hood => (
             <Marker
               key={hood.id}
+              animation={hood.id === props.selectedNeighbourhood ? 1 : null}
               position={hood.location}
               onClick={() => props.selectNeighbourhood(hood.id)}
             >

@@ -29,7 +29,10 @@ export const getNeighbourhoods = area => {
       .then(res => Promise.all(res.map(hood => hood.json())))
       .then(hoodBounds => (neighbourhoodBoundaries = hoodBounds));
 
-  const neighbourhoods = () =>
+  const formatBoundaries = boundaries =>
+    boundaries.map(bound => `${bound.latitude},${bound.longitude}`).join(':');
+
+  const getNeighbourhoodData = () =>
     Promise.all(neighbourhoodIds.map(id => fetch(`${api}/${area}/${id}`)))
       .then(res => Promise.all(res.map(hood => hood.json())))
       .then(hoods =>
@@ -40,11 +43,11 @@ export const getNeighbourhoods = area => {
             lat: parseFloat(hood.centre.latitude),
             lng: parseFloat(hood.centre.longitude)
           },
-          boundary: neighbourhoodBoundaries[index]
+          boundary: formatBoundaries(neighbourhoodBoundaries[index])
         }))
       );
 
   return setNeighbourhoodIds(area)
     .then(() => setNeighbourhoodBoundaries(area))
-    .then(() => neighbourhoods());
+    .then(() => getNeighbourhoodData());
 };

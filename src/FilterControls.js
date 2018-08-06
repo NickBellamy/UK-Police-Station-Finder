@@ -4,7 +4,7 @@ import LocationSelector from './LocationSelector';
 import NeighbourhoodInfo from './NeighbourhoodInfo';
 
 const FilterControls = ({
-  currentNeighbourhoods,
+  filteredNeighbourhoods,
   forceNames,
   setCurrentArea,
   selectNeighbourhood,
@@ -13,8 +13,8 @@ const FilterControls = ({
   <div>
     <LocationSelector forceNames={forceNames} setCurrentArea={setCurrentArea} />
     <NeighbourhoodInfo
-    filterNeighbourhoods={filterNeighbourhoods}
-      currentNeighbourhoods={currentNeighbourhoods}
+    filteredNeighbourhoods={filteredNeighbourhoods}
+      filterNeighbourhoods={filterNeighbourhoods}
       selectNeighbourhood={selectNeighbourhood}
     />
   </div>
@@ -23,7 +23,7 @@ const FilterControls = ({
 FilterControls.propTypes = {
     filterNeighbourhoods: PropTypes.func.isRequired,
   selectNeighbourhood: PropTypes.func.isRequired,
-  currentNeighbourhoods: PropTypes.array.isRequired,
+  filteredNeighbourhoods: PropTypes.array.isRequired,
   forceNames: PropTypes.array.isRequired,
   setCurrentArea: PropTypes.func.isRequired,
 };

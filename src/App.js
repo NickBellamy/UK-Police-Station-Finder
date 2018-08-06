@@ -11,21 +11,23 @@ class App extends Component {
     currentArea: '',
     currentNeighbourhoods: [],
     filteredNeighbourhoods: [],
-    selectedNeighbourhood: '',
+    selectedNeighbourhood: ''
   };
 
   filterNeighbourhoods = query => {
-
-    //TODO: Populate filteredNeighbourhoods in state
-    console.log(query);
-    
-  }
+    let lowerQuery = query.toLowerCase();
+    const filteredNeighbourhoods = this.state.currentNeighbourhoods.filter(
+      hood => hood.name.toLowerCase().includes(lowerQuery)
+    );
+    this.setState({ filteredNeighbourhoods });
+  };
 
   setCurrentArea = area => {
     getNeighbourhoods(area).then(neighbourhoods =>
       this.setState({
         currentArea: area,
-        currentNeighbourhoods: neighbourhoods
+        currentNeighbourhoods: neighbourhoods,
+        filteredNeighbourhoods: neighbourhoods
       })
     );
   };
@@ -46,14 +48,14 @@ class App extends Component {
         <Header />
         <div id="content">
           <FilterControls
-          filterNeighbourhoods={this.filterNeighbourhoods}
+            filterNeighbourhoods={this.filterNeighbourhoods}
             forceNames={this.state.forces}
             setCurrentArea={this.setCurrentArea}
             selectNeighbourhood={this.selectNeighbourhood}
-            currentNeighbourhoods={this.state.currentNeighbourhoods}
+            filteredNeighbourhoods={this.state.filteredNeighbourhoods}
           />
           <Map
-            currentNeighbourhoods={this.state.currentNeighbourhoods}
+            filteredNeighbourhoods={this.state.filteredNeighbourhoods}
             selectNeighbourhood={this.selectNeighbourhood}
             selectedNeighbourhood={this.state.selectedNeighbourhood}
           />

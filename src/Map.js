@@ -52,7 +52,7 @@ class Map extends Component {
       <CrimeMap
         selectedNeighbourhood={this.props.selectedNeighbourhood}
         selectNeighbourhood={this.props.selectNeighbourhood}
-        neighbourhoods={this.props.currentNeighbourhoods}
+        neighbourhoods={this.props.filteredNeighbourhoods}
         googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${
           apiConfig.googleMapsKey
         }`}

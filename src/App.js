@@ -10,8 +10,16 @@ class App extends Component {
     forces: [],
     currentArea: '',
     currentNeighbourhoods: [],
-    selectedNeighbourhood: ''
+    filteredNeighbourhoods: [],
+    selectedNeighbourhood: '',
   };
+
+  filterNeighbourhoods = query => {
+
+    //TODO: Populate filteredNeighbourhoods in state
+    console.log(query);
+    
+  }
 
   setCurrentArea = area => {
     getNeighbourhoods(area).then(neighbourhoods =>
@@ -38,6 +46,7 @@ class App extends Component {
         <Header />
         <div id="content">
           <FilterControls
+          filterNeighbourhoods={this.filterNeighbourhoods}
             forceNames={this.state.forces}
             setCurrentArea={this.setCurrentArea}
             selectNeighbourhood={this.selectNeighbourhood}

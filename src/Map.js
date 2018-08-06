@@ -35,7 +35,7 @@ class Map extends Component {
                         <li>website: {hood.website}</li>
                       {Object.keys(hood.contact)
                         .map(key => `${key}: ${hood.contact[key]}`)
-                        .map(contactType => <li>{contactType}</li>)}
+                        .map(contactType => <li key={contactType}>{contactType}</li>)}
                     </ul>
                   </div>
                 </InfoWindow>

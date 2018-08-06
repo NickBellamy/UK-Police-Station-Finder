@@ -7,11 +7,13 @@ const FilterControls = ({
   currentNeighbourhoods,
   forceNames,
   setCurrentArea,
-  selectNeighbourhood
+  selectNeighbourhood,
+  filterNeighbourhoods
 }) => (
   <div>
     <LocationSelector forceNames={forceNames} setCurrentArea={setCurrentArea} />
     <NeighbourhoodInfo
+    filterNeighbourhoods={filterNeighbourhoods}
       currentNeighbourhoods={currentNeighbourhoods}
       selectNeighbourhood={selectNeighbourhood}
     />
@@ -19,6 +21,7 @@ const FilterControls = ({
 );
 
 FilterControls.propTypes = {
+    filterNeighbourhoods: PropTypes.func.isRequired,
   selectNeighbourhood: PropTypes.func.isRequired,
   currentNeighbourhoods: PropTypes.array.isRequired,
   forceNames: PropTypes.array.isRequired,

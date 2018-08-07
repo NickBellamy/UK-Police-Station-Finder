@@ -15,10 +15,11 @@ import {
 //this and try to make it add new markers without re-rendering the map
 class Map extends Component {
   static propTypes = {
-      filteredNeighbourhoods: PropTypes.array.isRequired,
-      selectNeighbourhood: PropTypes.func.isRequired,
-      selectedNeighbourhood: PropTypes.string.isRequired
-  }
+    filteredNeighbourhoods: PropTypes.array.isRequired,
+    selectNeighbourhood: PropTypes.func.isRequired,
+    selectedNeighbourhood: PropTypes.string.isRequired
+  };
+  
   render() {
     const CrimeMap = withScriptjs(
       withGoogleMap(props => (
@@ -38,10 +39,12 @@ class Map extends Component {
                   <div>
                     <span>{hood.name}</span>
                     <ul>
-                        <li>website: {hood.website}</li>
+                      <li>website: {hood.website}</li>
                       {Object.keys(hood.contact)
                         .map(key => `${key}: ${hood.contact[key]}`)
-                        .map(contactType => <li key={contactType}>{contactType}</li>)}
+                        .map(contactType => (
+                          <li key={contactType}>{contactType}</li>
+                        ))}
                     </ul>
                   </div>
                 </InfoWindow>

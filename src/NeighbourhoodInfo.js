@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class NeighbourhoodInfo extends React.Component {
-  protoTypes = {
+  static propTypes = {
     filterNeighbourhoods: PropTypes.func.isRequired,
     filteredNeighbourhoods: PropTypes.array.isRequired,
     selectNeighbourhood: PropTypes.func.isRequired

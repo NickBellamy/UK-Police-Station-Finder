@@ -36,7 +36,7 @@ class Map extends Component {
             >
               {props.selectedNeighbourhood === hood.id ? (
                 <InfoWindow>
-                  <div style={{maxWidth: `300px`}}>
+                  <div style={{ maxWidth: `300px` }}>
                     <span>{hood.name}</span>
                     <ul>
                       <li>website: {hood.website}</li>
@@ -66,7 +66,9 @@ class Map extends Component {
           apiConfig.googleMapsKey
         }`}
         loadingElement={<div style={{ height: `100%` }} />}
-        containerElement={<div style={{ height: `calc(100vh - 60px)`, width: '100%' }} />}
+        containerElement={
+          <div style={{ height: `calc(100vh - 60px)`, width: '100%' }} />
+        }
         mapElement={<div style={{ height: `100%` }} />}
       />
     );

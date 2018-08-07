@@ -31,7 +31,7 @@ class NeighbourhoodInfo extends React.Component {
             this.updateFilterQuery(event.target.value);
           }}
         />
-        <ul>
+        <ul id="neighbourhood_list">
           {this.props.filteredNeighbourhoods.map(neighbourhood => (
             <li key={neighbourhood.id}>
               <a

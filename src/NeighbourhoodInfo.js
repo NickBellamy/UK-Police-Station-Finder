@@ -13,22 +13,24 @@ class NeighbourhoodInfo extends React.Component {
   };
 
   updateFilterQuery = query => {
-    this.setState({ filterQuery: query }, () => this.props.filterNeighbourhoods(this.state.filterQuery));
+    this.setState({ filterQuery: query }, () =>
+      this.props.filterNeighbourhoods(this.state.filterQuery)
+    );
   };
 
   render() {
     return (
       <div>
         <h2>Neighbourhoods</h2>
-        
-          <input
-            type="text"
-            placeholder="Filter neighbourhoods..."
-            value={this.state.filterQuery}
-            onChange={event => {
-              this.updateFilterQuery(event.target.value);
-            }}
-          />
+
+        <input
+          type="text"
+          placeholder="Filter neighbourhoods..."
+          value={this.state.filterQuery}
+          onChange={event => {
+            this.updateFilterQuery(event.target.value);
+          }}
+        />
         <ul>
           {this.props.filteredNeighbourhoods.map(neighbourhood => (
             <li key={neighbourhood.id}>

@@ -19,7 +19,7 @@ class Map extends Component {
     selectNeighbourhood: PropTypes.func.isRequired,
     selectedNeighbourhood: PropTypes.string.isRequired
   };
-  
+
   render() {
     const CrimeMap = withScriptjs(
       withGoogleMap(props => (
@@ -36,7 +36,7 @@ class Map extends Component {
             >
               {props.selectedNeighbourhood === hood.id ? (
                 <InfoWindow>
-                  <div>
+                  <div style={{maxWidth: `300px`}}>
                     <span>{hood.name}</span>
                     <ul>
                       <li>website: {hood.website}</li>
@@ -66,7 +66,7 @@ class Map extends Component {
           apiConfig.googleMapsKey
         }`}
         loadingElement={<div style={{ height: `100%` }} />}
-        containerElement={<div style={{ height: `70vh`, width: '100%' }} />}
+        containerElement={<div style={{ height: `calc(100vh - 60px)`, width: '100%' }} />}
         mapElement={<div style={{ height: `100%` }} />}
       />
     );

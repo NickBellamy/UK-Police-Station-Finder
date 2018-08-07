@@ -9,16 +9,36 @@ const FilterControls = ({
   setCurrentArea,
   selectNeighbourhood,
   filterNeighbourhoods
-}) => (
-  <div>
-    <LocationSelector forceNames={forceNames} setCurrentArea={setCurrentArea} />
-    <NeighbourhoodInfo
-      filteredNeighbourhoods={filteredNeighbourhoods}
-      filterNeighbourhoods={filterNeighbourhoods}
-      selectNeighbourhood={selectNeighbourhood}
-    />
+}) => {
+    const toggleMenu = () => {
+        document.getElementById('sidebar').classList.toggle('open');
+        document.querySelector('#tab_arrow').classList.toggle('rotate')
+    }
+
+    return (
+  <div id="sidebar">
+    <div id="sidebar_main">
+      <LocationSelector
+        forceNames={forceNames}
+        setCurrentArea={setCurrentArea}
+      />
+      <NeighbourhoodInfo
+        filteredNeighbourhoods={filteredNeighbourhoods}
+        filterNeighbourhoods={filterNeighbourhoods}
+        selectNeighbourhood={selectNeighbourhood}
+      />
+    </div>
+    <a
+      id="tab_link"
+      href="#"
+      onClick={toggleMenu}
+    >
+      <div id="sidebar_tab">
+        <div id="tab_arrow">></div>
+      </div>
+    </a>
   </div>
-);
+);}
 
 FilterControls.propTypes = {
   filterNeighbourhoods: PropTypes.func.isRequired,

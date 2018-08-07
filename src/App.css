@@ -4,11 +4,64 @@ body {
   margin: 0;
   padding: 0;
 }
+a {
+    text-decoration: none;
+}
 
 ul {
   list-style: none;
 }
 
+#menu {
+  position: absolute;
+  width: 70px;
+}
+
 #content {
   display: flex;
+}
+
+/* Sidebar */
+
+#sidebar {
+  position: fixed;
+  z-index: 1;
+  height: 100%;
+  margin-left: -300px;
+  display: flex;
+  justify-content: space-between;
+  transition: margin 1s;
+}
+
+#sidebar_main {
+  width: 300px;
+}
+
+#sidebar_tab {
+  height: 40px;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#sidebar_main,
+#sidebar_tab {
+  background: wheat;
+}
+
+#tab_link {
+  height: 40px;
+}
+
+#tab_arrow {
+    transition: transform 1s;
+}
+
+.open {
+  margin: 0 !important;
+}
+
+.rotate {
+  transform: rotate(180deg) !important;
 }

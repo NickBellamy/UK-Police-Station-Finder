@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import apiConfig from './apiKeys';
 import {
   withGoogleMap,
@@ -13,6 +14,11 @@ import {
 //ideal.  If I hsve time at the end of the project, I will revisit
 //this and try to make it add new markers without re-rendering the map
 class Map extends Component {
+  static propTypes = {
+      filteredNeighbourhoods: PropTypes.array.isRequired,
+      selectNeighbourhood: PropTypes.func.isRequired,
+      selectedNeighbourhood: PropTypes.string.isRequired
+  }
   render() {
     const CrimeMap = withScriptjs(
       withGoogleMap(props => (

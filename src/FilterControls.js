@@ -13,7 +13,7 @@ const FilterControls = ({
   <div>
     <LocationSelector forceNames={forceNames} setCurrentArea={setCurrentArea} />
     <NeighbourhoodInfo
-    filteredNeighbourhoods={filteredNeighbourhoods}
+      filteredNeighbourhoods={filteredNeighbourhoods}
       filterNeighbourhoods={filterNeighbourhoods}
       selectNeighbourhood={selectNeighbourhood}
     />
@@ -21,11 +21,11 @@ const FilterControls = ({
 );
 
 FilterControls.propTypes = {
-    filterNeighbourhoods: PropTypes.func.isRequired,
+  filterNeighbourhoods: PropTypes.func.isRequired,
   selectNeighbourhood: PropTypes.func.isRequired,
   filteredNeighbourhoods: PropTypes.array.isRequired,
   forceNames: PropTypes.array.isRequired,
-  setCurrentArea: PropTypes.func.isRequired,
+  setCurrentArea: PropTypes.func.isRequired
 };
 
 export default FilterControls;

@@ -67,7 +67,7 @@ class Map extends Component {
         }`}
         loadingElement={<div style={{ height: `100%` }} />}
         containerElement={
-          <div style={{ height: `calc(100vh - 60px)`, width: '100%' }} />
+          <div style={{ height: `calc(100vh - 90px)`, width: '100%' }} />
         }
         mapElement={<div style={{ height: `100%` }} />}
       />

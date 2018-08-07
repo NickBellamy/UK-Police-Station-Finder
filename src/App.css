@@ -35,15 +35,18 @@ ul {
 #sidebar {
   position: fixed;
   z-index: 1;
-  height: 100%;
+  height: 78%;
   margin-left: -300px;
   display: flex;
   justify-content: space-between;
   transition: margin 1s;
+  margin-top: 20px;
 }
 
 #sidebar_main {
-  width: 300px;
+  width: 260px;
+  padding: 20px;
+  border-radius: 0 0 10px 0;
 }
 
 #sidebar_tab {
@@ -52,6 +55,7 @@ ul {
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 0 5px 5px 0;
 }
 
 #sidebar_main,
@@ -68,7 +72,7 @@ ul {
 }
 
 .open {
-  margin: 0 !important;
+  margin-left: 0 !important;
 }
 
 .rotate {

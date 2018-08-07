@@ -1,7 +1,8 @@
 html,
-body {
-    font-family: 'Archivo Narrow', sans-serif;
-  height: 100%;
+body,
+h1,
+h2 {
+  font-family: 'Archivo Narrow', sans-serif;
   margin: 0;
   padding: 0;
 }
@@ -11,6 +12,13 @@ a {
 
 ul {
   list-style: none;
+}
+
+.App-header {
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #menu {

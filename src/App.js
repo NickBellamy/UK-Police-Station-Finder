@@ -7,7 +7,7 @@ import { getForces, getNeighbourhoods } from './PoliceAPI';
 
 class App extends Component {
   state = {
-    forces: [],
+    forces: [{ id: '', name: '' }],
     currentArea: '',
     currentNeighbourhoods: [],
     filteredNeighbourhoods: [],
@@ -23,7 +23,8 @@ class App extends Component {
   };
 
   setCurrentArea = area => {
-    getNeighbourhoods(area).then(neighbourhoods =>
+    const areaId = this.state.forces.find(force => force.name === area).id;
+    getNeighbourhoods(areaId).then(neighbourhoods =>
       this.setState({
         currentArea: area,
         currentNeighbourhoods: neighbourhoods,
@@ -38,7 +39,7 @@ class App extends Component {
 
   componentDidMount() {
     getForces().then(results =>
-      this.setState({ forces: results.map(force => force.id) })
+      this.setState({ forces: results.map(force => force) })
     );
   }
 
@@ -49,7 +50,7 @@ class App extends Component {
         <div id="content">
           <FilterControls
             filterNeighbourhoods={this.filterNeighbourhoods}
-            forceNames={this.state.forces}
+            forceNames={this.state.forces.map(force => force.name)}
             setCurrentArea={this.setCurrentArea}
             selectNeighbourhood={this.selectNeighbourhood}
             filteredNeighbourhoods={this.state.filteredNeighbourhoods}

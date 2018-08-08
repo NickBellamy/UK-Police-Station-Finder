@@ -28,7 +28,8 @@ class App extends Component {
       this.setState({
         currentArea: area,
         currentNeighbourhoods: neighbourhoods,
-        filteredNeighbourhoods: neighbourhoods
+        filteredNeighbourhoods: neighbourhoods,
+        selectedNeighbourhood: ''
       })
     );
   };

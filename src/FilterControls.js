@@ -4,6 +4,7 @@ import LocationSelector from './LocationSelector';
 import NeighbourhoodInfo from './NeighbourhoodInfo';
 
 const FilterControls = ({
+  currentArea,
   filteredNeighbourhoods,
   forceNames,
   setCurrentArea,
@@ -23,6 +24,7 @@ const FilterControls = ({
     <div id="sidebar">
       <div id="sidebar_main">
         <LocationSelector
+          currentArea={currentArea}
           forceNames={forceNames}
           setCurrentArea={setCurrentArea}
         />
@@ -46,6 +48,7 @@ const FilterControls = ({
 };
 
 FilterControls.propTypes = {
+  currentArea: PropTypes.string.isRequired,
   isLoading: PropTypes.bool.isRequired,
   filterQuery: PropTypes.string.isRequired,
   updateFilterQuery: PropTypes.func.isRequired,

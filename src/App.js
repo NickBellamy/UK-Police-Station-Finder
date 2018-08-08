@@ -48,9 +48,15 @@ class App extends Component {
   };
 
   componentDidMount() {
-    getForces().then(results =>
-      this.setState({ forces: results.map(force => force) })
-    );
+    getForces()
+      .then(results => this.setState({ forces: results.map(force => force) }))
+      //This line hard codes in the default area to load when the app is
+      //initialised.  It can be removed to give the user a chance to select
+      //which area they want to browse initially.  The reason it is included
+      //is because the app spec explicitly says that there must be pins
+      //rendered on the map when the app is first loaded.  "Cambridgeshire"
+      //was chosen because it has a relatively fast load time.
+      .then(() => this.setCurrentArea('Cambridgeshire'));
   }
 
   render() {
@@ -59,6 +65,7 @@ class App extends Component {
         <Header />
         <div id="content">
           <FilterControls
+            currentArea={this.state.currentArea}
             isLoading={this.state.isLoading}
             filterNeighbourhoods={this.filterNeighbourhoods}
             forceNames={this.state.forces.map(force => force.name)}

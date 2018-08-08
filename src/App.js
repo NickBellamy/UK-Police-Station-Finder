@@ -10,12 +10,17 @@ class App extends Component {
     forces: [{ id: '', name: '' }],
     currentArea: '',
     currentNeighbourhoods: [],
+    filterQuery: '',
     filteredNeighbourhoods: [],
     selectedNeighbourhood: ''
   };
 
-  filterNeighbourhoods = query => {
-    let lowerQuery = query.toLowerCase();
+  updateFilterQuery = query => {
+    this.setState({ filterQuery: query }, () => this.filterNeighbourhoods());
+  };
+
+  filterNeighbourhoods = () => {
+    let lowerQuery = this.state.filterQuery.toLowerCase();
     const filteredNeighbourhoods = this.state.currentNeighbourhoods.filter(
       hood => hood.name.toLowerCase().includes(lowerQuery)
     );
@@ -29,7 +34,8 @@ class App extends Component {
         currentArea: area,
         currentNeighbourhoods: neighbourhoods,
         filteredNeighbourhoods: neighbourhoods,
-        selectedNeighbourhood: ''
+        selectedNeighbourhood: '',
+        filterQuery: ''
       })
     );
   };
@@ -56,6 +62,8 @@ class App extends Component {
             selectNeighbourhood={this.selectNeighbourhood}
             selectedNeighbourhood={this.state.selectedNeighbourhood}
             filteredNeighbourhoods={this.state.filteredNeighbourhoods}
+            updateFilterQuery={this.updateFilterQuery}
+            filterQuery={this.state.filterQuery}
           />
           <Map
             filteredNeighbourhoods={this.state.filteredNeighbourhoods}

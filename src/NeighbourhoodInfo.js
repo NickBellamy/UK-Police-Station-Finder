@@ -6,17 +6,9 @@ class NeighbourhoodInfo extends React.Component {
     filterNeighbourhoods: PropTypes.func.isRequired,
     filteredNeighbourhoods: PropTypes.array.isRequired,
     selectNeighbourhood: PropTypes.func.isRequired,
-    selectedNeighbourhood: PropTypes.string.isRequired
-  };
-
-  state = {
-    filterQuery: ''
-  };
-
-  updateFilterQuery = query => {
-    this.setState({ filterQuery: query }, () =>
-      this.props.filterNeighbourhoods(this.state.filterQuery)
-    );
+    selectedNeighbourhood: PropTypes.string.isRequired,
+    updateFilterQuery: PropTypes.func.isRequired,
+    filterQuery: PropTypes.string.isRequired
   };
 
   render() {
@@ -27,9 +19,9 @@ class NeighbourhoodInfo extends React.Component {
         <input
           type="text"
           placeholder="Filter neighbourhoods..."
-          value={this.state.filterQuery}
+          value={this.props.filterQuery}
           onChange={event => {
-            this.updateFilterQuery(event.target.value);
+            this.props.updateFilterQuery(event.target.value);
           }}
         />
         <ul id="neighbourhood_list">

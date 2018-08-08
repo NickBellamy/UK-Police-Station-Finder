@@ -9,40 +9,43 @@ const FilterControls = ({
   setCurrentArea,
   selectNeighbourhood,
   selectedNeighbourhood,
-  filterNeighbourhoods
+  filterNeighbourhoods,
+  filterQuery,
+  updateFilterQuery
 }) => {
-    const toggleMenu = () => {
-        document.getElementById('sidebar').classList.toggle('open');
-        document.querySelector('#tab_arrow').classList.toggle('rotate')
-    }
+  const toggleMenu = () => {
+    document.getElementById('sidebar').classList.toggle('open');
+    document.querySelector('#tab_arrow').classList.toggle('rotate');
+  };
 
-    return (
-  <div id="sidebar">
-    <div id="sidebar_main">
-      <LocationSelector
-        forceNames={forceNames}
-        setCurrentArea={setCurrentArea}
-      />
-      <NeighbourhoodInfo
-        filteredNeighbourhoods={filteredNeighbourhoods}
-        filterNeighbourhoods={filterNeighbourhoods}
-        selectNeighbourhood={selectNeighbourhood}
-        selectedNeighbourhood={selectedNeighbourhood}
-      />
-    </div>
-    <a
-      id="tab_link"
-      href="#"
-      onClick={toggleMenu}
-    >
-      <div id="sidebar_tab">
-        <div id="tab_arrow">></div>
+  return (
+    <div id="sidebar">
+      <div id="sidebar_main">
+        <LocationSelector
+          forceNames={forceNames}
+          setCurrentArea={setCurrentArea}
+        />
+        <NeighbourhoodInfo
+          filterQuery={filterQuery}
+          updateFilterQuery={updateFilterQuery}
+          filteredNeighbourhoods={filteredNeighbourhoods}
+          filterNeighbourhoods={filterNeighbourhoods}
+          selectNeighbourhood={selectNeighbourhood}
+          selectedNeighbourhood={selectedNeighbourhood}
+        />
       </div>
-    </a>
-  </div>
-);}
+      <a id="tab_link" href="#" onClick={toggleMenu}>
+        <div id="sidebar_tab">
+          <div id="tab_arrow">></div>
+        </div>
+      </a>
+    </div>
+  );
+};
 
 FilterControls.propTypes = {
+  filterQuery: PropTypes.string.isRequired,
+  updateFilterQuery: PropTypes.func.isRequired,
   filterNeighbourhoods: PropTypes.func.isRequired,
   selectNeighbourhood: PropTypes.func.isRequired,
   selectedNeighbourhood: PropTypes.string.isRequired,

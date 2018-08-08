@@ -24,12 +24,14 @@ const RenderMap = withScriptjs(
               <div className="contact_details" style={{ maxWidth: `300px` }}>
                 <h3>{hood.name}</h3>
                 <ul>
-                  <li>
-                    <span>website:</span>{' '}
-                    <a href={hood.website} target="_blank">
-                      {hood.website}
-                    </a>
-                  </li>
+                  {hood.website && (
+                    <li>
+                      <span>website:</span>{' '}
+                      <a href={hood.website} target="_blank">
+                        {hood.website}
+                      </a>
+                    </li>
+                  )}
                   {Object.keys(hood.contact)
                     .map(key => ({ type: key, details: hood.contact[key] }))
                     .map(contactType => (

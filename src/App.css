@@ -82,16 +82,17 @@ ul {
 #neighbourhood_list {
   height: 50vh;
   overflow-y: auto;
+  padding-left: 15px;
 }
 
 .contact_details span {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .contact_details ul {
-    padding-left: 23px;
+  padding-left: 23px;
 }
 
 .highlighted {
-    text-shadow: 2px 2px aliceblue;
+  text-shadow: 2px 2px aliceblue;
 }

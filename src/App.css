@@ -3,8 +3,6 @@ body,
 h1,
 h2 {
   font-family: 'Archivo Narrow', sans-serif;
-  margin: 0;
-  padding: 0;
 }
 a {
   text-decoration: none;
@@ -80,7 +78,7 @@ ul {
 }
 
 #neighbourhood_list {
-  height: 50vh;
+  height: 45vh;
   overflow-y: auto;
   padding-left: 15px;
 }
@@ -104,5 +102,5 @@ ul {
 
 #loading {
   text-align: center;
-  margin-top: 25vh;
+  margin-top: 20vh;
 }

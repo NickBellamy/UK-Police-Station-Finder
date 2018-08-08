@@ -87,3 +87,7 @@ ul {
 .contact_details span {
     font-weight: bold;
 }
+
+.contact_details ul {
+    padding-left: 23px;
+}

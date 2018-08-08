@@ -85,6 +85,10 @@ ul {
   padding-left: 15px;
 }
 
+#neighbourhood_list a {
+  color: steelblue;
+}
+
 .contact_details span {
   font-weight: bold;
 }
@@ -94,5 +98,6 @@ ul {
 }
 
 .highlighted {
-  text-shadow: 2px 2px aliceblue;
+  color: purple !important;
+  text-decoration: underline;
 }

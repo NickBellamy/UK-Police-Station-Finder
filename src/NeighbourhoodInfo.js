@@ -39,8 +39,9 @@ class NeighbourhoodInfo extends React.Component {
                 href="#"
                 onClick={() => this.props.selectNeighbourhood(neighbourhood.id)}
                 className={
-                  this.props.selectedNeighbourhood === neighbourhood.id &&
-                  'highlighted'
+                  this.props.selectedNeighbourhood === neighbourhood.id
+                    ? 'highlighted'
+                    : undefined
                 }
               >
                 {neighbourhood.name}

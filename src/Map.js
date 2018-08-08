@@ -36,14 +36,14 @@ class Map extends Component {
             >
               {props.selectedNeighbourhood === hood.id ? (
                 <InfoWindow>
-                  <div style={{ maxWidth: `300px` }}>
-                    <span>{hood.name}</span>
+                  <div class="contact_details" style={{ maxWidth: `300px` }}>
+                    <h3>{hood.name}</h3>
                     <ul>
-                      <li>website: {hood.website}</li>
+                      <li><span>website:</span> {hood.website}</li>
                       {Object.keys(hood.contact)
-                        .map(key => `${key}: ${hood.contact[key]}`)
+                        .map(key => ({type: key, details: hood.contact[key]}))
                         .map(contactType => (
-                          <li key={contactType}>{contactType}</li>
+                          <li key={contactType.type}><span>{contactType.type}:</span> {contactType.details}</li>
                         ))}
                     </ul>
                   </div>

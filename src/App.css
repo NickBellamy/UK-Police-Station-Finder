@@ -83,3 +83,7 @@ ul {
   height: 50vh;
   overflow-y: auto;
 }
+
+.contact_details span {
+    font-weight: bold;
+}

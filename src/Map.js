@@ -35,15 +35,20 @@ class Map extends Component {
               onClick={() => props.selectNeighbourhood(hood.id)}
             >
               {props.selectedNeighbourhood === hood.id ? (
-                <InfoWindow>
+                <InfoWindow onCloseClick={() => props.selectNeighbourhood('')}>
                   <div class="contact_details" style={{ maxWidth: `300px` }}>
                     <h3>{hood.name}</h3>
                     <ul>
-                      <li><span>website:</span> {hood.website}</li>
+                      <li>
+                        <span>website:</span> {hood.website}
+                      </li>
                       {Object.keys(hood.contact)
-                        .map(key => ({type: key, details: hood.contact[key]}))
+                        .map(key => ({ type: key, details: hood.contact[key] }))
                         .map(contactType => (
-                          <li key={contactType.type}><span>{contactType.type}:</span> {contactType.details}</li>
+                          <li key={contactType.type}>
+                            <span>{contactType.type}:</span>{' '}
+                            {contactType.details}
+                          </li>
                         ))}
                     </ul>
                   </div>

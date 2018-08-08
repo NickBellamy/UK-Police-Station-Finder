@@ -8,6 +8,7 @@ export const cleanAreaNames = areas => {
   areas.map(area => {
     for (let i = 0; i < disallowed.length; i++) {
       area.name = area.name.replace(disallowed[i], '');
+      area.name = convertToAmpersand(area.name);
     }
     return area;
   });
@@ -27,4 +28,6 @@ export const cleanNeighbourhoodNames = hood => {
   return convertToAmpersand(hood);
 };
 
-const convertToAmpersand = string => string.replace(/&amp;/g, '&').replace(/ and /g, ' & ');
+// Replaces "&amp;" and " and " with "&"
+const convertToAmpersand = string =>
+  string.replace(/&amp;/g, '&').replace(/ and /g, ' & ');

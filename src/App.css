@@ -91,3 +91,7 @@ ul {
 .contact_details ul {
     padding-left: 23px;
 }
+
+.highlighted {
+    text-shadow: 2px 2px aliceblue;
+}

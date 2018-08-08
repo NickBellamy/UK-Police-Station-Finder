@@ -53,6 +53,7 @@ class App extends Component {
             forceNames={this.state.forces.map(force => force.name)}
             setCurrentArea={this.setCurrentArea}
             selectNeighbourhood={this.selectNeighbourhood}
+            selectedNeighbourhood={this.state.selectedNeighbourhood}
             filteredNeighbourhoods={this.state.filteredNeighbourhoods}
           />
           <Map

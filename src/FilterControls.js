@@ -8,6 +8,7 @@ const FilterControls = ({
   forceNames,
   setCurrentArea,
   selectNeighbourhood,
+  selectedNeighbourhood,
   filterNeighbourhoods
 }) => {
     const toggleMenu = () => {
@@ -26,6 +27,7 @@ const FilterControls = ({
         filteredNeighbourhoods={filteredNeighbourhoods}
         filterNeighbourhoods={filterNeighbourhoods}
         selectNeighbourhood={selectNeighbourhood}
+        selectedNeighbourhood={selectedNeighbourhood}
       />
     </div>
     <a
@@ -43,6 +45,7 @@ const FilterControls = ({
 FilterControls.propTypes = {
   filterNeighbourhoods: PropTypes.func.isRequired,
   selectNeighbourhood: PropTypes.func.isRequired,
+  selectedNeighbourhood: PropTypes.string.isRequired,
   filteredNeighbourhoods: PropTypes.array.isRequired,
   forceNames: PropTypes.array.isRequired,
   setCurrentArea: PropTypes.func.isRequired

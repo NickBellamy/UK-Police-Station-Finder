@@ -5,7 +5,8 @@ class NeighbourhoodInfo extends React.Component {
   static propTypes = {
     filterNeighbourhoods: PropTypes.func.isRequired,
     filteredNeighbourhoods: PropTypes.array.isRequired,
-    selectNeighbourhood: PropTypes.func.isRequired
+    selectNeighbourhood: PropTypes.func.isRequired,
+    selectedNeighbourhood: PropTypes.string.isRequired
   };
 
   state = {
@@ -37,6 +38,10 @@ class NeighbourhoodInfo extends React.Component {
               <a
                 href="#"
                 onClick={() => this.props.selectNeighbourhood(neighbourhood.id)}
+                className={
+                  this.props.selectedNeighbourhood === neighbourhood.id &&
+                  'highlighted'
+                }
               >
                 {neighbourhood.name}
               </a>

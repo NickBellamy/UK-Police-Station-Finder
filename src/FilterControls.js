@@ -11,7 +11,8 @@ const FilterControls = ({
   selectedNeighbourhood,
   filterNeighbourhoods,
   filterQuery,
-  updateFilterQuery
+  updateFilterQuery,
+  isLoading
 }) => {
   const toggleMenu = () => {
     document.getElementById('sidebar').classList.toggle('open');
@@ -26,6 +27,7 @@ const FilterControls = ({
           setCurrentArea={setCurrentArea}
         />
         <NeighbourhoodInfo
+          isLoading={isLoading}
           filterQuery={filterQuery}
           updateFilterQuery={updateFilterQuery}
           filteredNeighbourhoods={filteredNeighbourhoods}
@@ -44,6 +46,7 @@ const FilterControls = ({
 };
 
 FilterControls.propTypes = {
+  isLoading: PropTypes.bool.isRequired,
   filterQuery: PropTypes.string.isRequired,
   updateFilterQuery: PropTypes.func.isRequired,
   filterNeighbourhoods: PropTypes.func.isRequired,

@@ -101,3 +101,8 @@ ul {
   color: purple !important;
   text-decoration: underline;
 }
+
+#loading {
+  text-align: center;
+  margin-top: 140px;
+}

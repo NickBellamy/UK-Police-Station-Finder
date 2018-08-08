@@ -12,7 +12,8 @@ class App extends Component {
     currentNeighbourhoods: [],
     filterQuery: '',
     filteredNeighbourhoods: [],
-    selectedNeighbourhood: ''
+    selectedNeighbourhood: '',
+    isLoading: true
   };
 
   updateFilterQuery = query => {
@@ -28,6 +29,7 @@ class App extends Component {
   };
 
   setCurrentArea = area => {
+    this.setState({ isLoading: true });
     const areaId = this.state.forces.find(force => force.name === area).id;
     getNeighbourhoods(areaId).then(neighbourhoods =>
       this.setState({
@@ -35,7 +37,8 @@ class App extends Component {
         currentNeighbourhoods: neighbourhoods,
         filteredNeighbourhoods: neighbourhoods,
         selectedNeighbourhood: '',
-        filterQuery: ''
+        filterQuery: '',
+        isLoading: false
       })
     );
   };
@@ -56,6 +59,7 @@ class App extends Component {
         <Header />
         <div id="content">
           <FilterControls
+            isLoading={this.state.isLoading}
             filterNeighbourhoods={this.filterNeighbourhoods}
             forceNames={this.state.forces.map(force => force.name)}
             setCurrentArea={this.setCurrentArea}

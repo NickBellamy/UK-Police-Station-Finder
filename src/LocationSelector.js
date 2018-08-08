@@ -9,7 +9,7 @@ const LocationSelector = ({ forceNames, setCurrentArea }) => (
       onChange={event => setCurrentArea(event.target.value)}
     >
       <option disabled value="default">
-        ...select a region
+        Select a region...
       </option>
       {forceNames.map(force => <option key={force}>{force}</option>)}
     </select>

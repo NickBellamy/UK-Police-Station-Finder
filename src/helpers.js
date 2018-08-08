@@ -13,3 +13,18 @@ export const cleanAreaNames = areas => {
   });
   return areas;
 };
+
+export const cleanNeighbourhoodNames = hood => {
+  const disallowed = [
+    ' (One Team)',
+    ' policing team',
+    ' Safer Neighbourhood Team',
+    ' Community Police Team'
+  ];
+  for (let i = 0; i < disallowed.length; i++) {
+    hood = hood.replace(disallowed[i], '');
+  }
+  return convertToAmpersand(hood);
+};
+
+const convertToAmpersand = string => string.replace(/&amp;/g, '&').replace(/ and /g, ' & ');

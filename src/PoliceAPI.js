@@ -1,4 +1,4 @@
-import * as Helpers from './helpers'
+import * as Helpers from './helpers';
 const api = 'https://data.police.uk/api';
 
 export const getForces = () =>
@@ -21,7 +21,7 @@ export const getNeighbourhoods = area => {
       .then(hoods =>
         hoods.map(hood => ({
           id: hood.id,
-          name: hood.name,
+          name: Helpers.cleanNeighbourhoodNames(hood.name),
           location: {
             lat: parseFloat(hood.centre.latitude),
             lng: parseFloat(hood.centre.longitude)

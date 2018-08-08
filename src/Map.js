@@ -21,7 +21,7 @@ const RenderMap = withScriptjs(
         >
           {props.selectedNeighbourhood === hood.id ? (
             <InfoWindow onCloseClick={() => props.selectNeighbourhood('')}>
-              <div class="contact_details" style={{ maxWidth: `300px` }}>
+              <div className="contact_details" style={{ maxWidth: `300px` }}>
                 <h3>{hood.name}</h3>
                 <ul>
                   <li>

@@ -31,5 +31,7 @@ export const getNeighbourhoods = area => {
         }))
       );
 
-  return setNeighbourhoodIds(area).then(() => getNeighbourhoodData());
+  return setNeighbourhoodIds(area)
+    .then(() => getNeighbourhoodData())
+    .then(neighbourhoods => Helpers.alphabetiseHoods(neighbourhoods));
 };

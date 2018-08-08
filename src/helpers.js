@@ -28,6 +28,9 @@ export const cleanNeighbourhoodNames = hood => {
   return convertToAmpersand(hood);
 };
 
+export const alphabetiseHoods = hoods =>
+  hoods.sort((a, b) => a.name.localeCompare(b.name));
+
 // Replaces "&amp;" and " and " with "&"
 const convertToAmpersand = string =>
   string.replace(/&amp;/g, '&').replace(/ and /g, ' & ');

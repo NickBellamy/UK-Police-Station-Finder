@@ -29,11 +29,10 @@ class App extends Component {
   };
 
   setCurrentArea = area => {
-    this.setState({ isLoading: true });
+    this.setState({ currentArea: area, isLoading: true });
     const areaId = this.state.forces.find(force => force.name === area).id;
     getNeighbourhoods(areaId).then(neighbourhoods =>
       this.setState({
-        currentArea: area,
         currentNeighbourhoods: neighbourhoods,
         filteredNeighbourhoods: neighbourhoods,
         selectedNeighbourhood: '',

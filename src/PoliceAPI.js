@@ -1,6 +1,10 @@
+import * as Helpers from './helpers'
 const api = 'https://data.police.uk/api';
 
-export const getForces = () => fetch(`${api}/forces`).then(res => res.json());
+export const getForces = () =>
+  fetch(`${api}/forces`)
+    .then(res => res.json())
+    .then(results => Helpers.cleanAreaNames(results));
 
 export const getNeighbourhoods = area => {
   let neighbourhoodIds = [];

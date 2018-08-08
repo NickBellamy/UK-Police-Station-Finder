@@ -13,7 +13,7 @@ class App extends Component {
     filterQuery: '',
     filteredNeighbourhoods: [],
     selectedNeighbourhood: '',
-    isLoading: true
+    isLoading: false
   };
 
   updateFilterQuery = query => {

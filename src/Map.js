@@ -40,7 +40,8 @@ class Map extends Component {
                     <h3>{hood.name}</h3>
                     <ul>
                       <li>
-                        <span>website:</span> {hood.website}
+                        <span>website:</span>{' '}
+                        <a href={hood.website} target="_blank">{hood.website}</a>
                       </li>
                       {Object.keys(hood.contact)
                         .map(key => ({ type: key, details: hood.contact[key] }))

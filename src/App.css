@@ -92,6 +92,10 @@ ul {
   height: 35px;
 }
 
+#sidebar input {
+  padding: 0 5px;
+}
+
 #neighbourhood_component {
   margin-top: 15px;
   height: calc(100% - 75px);

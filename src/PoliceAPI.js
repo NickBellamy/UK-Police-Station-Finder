@@ -1,10 +1,14 @@
-import * as Helpers from './helpers';
+import {
+  alphabetiseHoods,
+  cleanAreaNames,
+  cleanNeighbourhoodNames
+} from './helpers';
 const api = 'https://data.police.uk/api';
 
 export const getForces = () =>
   fetch(`${api}/forces`)
     .then(res => res.json())
-    .then(results => Helpers.cleanAreaNames(results));
+    .then(results => cleanAreaNames(results));
 
 export const getNeighbourhoods = area => {
   let neighbourhoodIds = [];
@@ -21,7 +25,7 @@ export const getNeighbourhoods = area => {
       .then(hoods =>
         hoods.map(hood => ({
           id: hood.id,
-          name: Helpers.cleanNeighbourhoodNames(hood.name),
+          name: cleanNeighbourhoodNames(hood.name),
           location: {
             lat: parseFloat(hood.centre.latitude),
             lng: parseFloat(hood.centre.longitude)
@@ -33,5 +37,5 @@ export const getNeighbourhoods = area => {
 
   return setNeighbourhoodIds(area)
     .then(() => getNeighbourhoodData())
-    .then(neighbourhoods => Helpers.alphabetiseHoods(neighbourhoods));
+    .then(neighbourhoods => alphabetiseHoods(neighbourhoods));
 };

@@ -37,13 +37,14 @@ export const alphabetiseHoods = hoods =>
 const convertToAmpersand = string =>
   string.replace(/&amp;/g, '&').replace(/ and /g, ' & ');
 
+//TODO: Refactor this monstrosity!
 export const renderContact = contact => {
   if (contact.type === 'twitter') {
     if (contact.details.includes('twitter.com')) {
       return {
         type: contact.type,
         details: (
-            //Replace '/#!' in url to make Surrey police twitter links work properly
+          //Replace '/#!' in url to make Surrey police twitter links work properly
           <a href={contact.details.replace('/#!', '')} target="blank">
             {contact.details.replace('/#!', '')}
           </a>
@@ -62,7 +63,8 @@ export const renderContact = contact => {
     }
   } else if (
     (contact.details.includes('.uk') || contact.details.includes('.co')) &&
-    !contact.details.includes('@') && !contact.details.includes(' ')
+    !contact.details.includes('@') &&
+    !contact.details.includes(' ')
   ) {
     if (contact.details.includes('http')) {
       return {
@@ -83,6 +85,11 @@ export const renderContact = contact => {
         )
       };
     }
+  } else if (contact.details.includes('@') || contact.type === 'email') {
+    return {
+      type: contact.type,
+      details: <a href={`mailto:${contact.details}`}>{contact.details}</a>
+    };
   } else {
     return contact;
   }

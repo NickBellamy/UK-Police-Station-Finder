@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const LocationSelector = ({ forceNames, setCurrentArea, currentArea }) => (
-  <div>
+  <div id="location_component">
     <h2>Location</h2>
     <select
       value={currentArea}
@@ -11,7 +11,11 @@ const LocationSelector = ({ forceNames, setCurrentArea, currentArea }) => (
       <option disabled value="default">
         Select a region...
       </option>
-      {forceNames.map(force => <option key={force} value={force}>{force}</option>)}
+      {forceNames.map(force => (
+        <option key={force} value={force}>
+          {force}
+        </option>
+      ))}
     </select>
   </div>
 );

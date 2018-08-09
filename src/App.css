@@ -8,6 +8,10 @@ a {
   text-decoration: none;
 }
 
+body {
+    overscroll-behavior: none;
+}
+
 ul {
   list-style: none;
 }
@@ -31,18 +35,27 @@ ul {
 /* Sidebar */
 
 #sidebar {
+  height: calc(100vh - 160px);
   position: fixed;
   z-index: 1;
-  height: 78%;
-  margin-left: -300px;
+  margin-left: -275px;
   display: flex;
   justify-content: space-between;
   transition: margin 1s;
-  margin-top: 20px;
+  margin-top: 40px;
+}
+
+#sidebar h2 {
+  margin: 0 0 5px 0;
+  font-size: 20px;
+}
+
+#sidebar input {
+  height: 40px;
 }
 
 #sidebar_main {
-  width: 260px;
+  width: 235px;
   padding: 20px;
   border-radius: 0 0 10px 0;
 }
@@ -78,10 +91,27 @@ ul {
   transform: rotate(180deg) !important;
 }
 
+#location_component {
+  display: flex;
+  flex-flow: column nowrap;
+}
+#location_component input,
+#location_component select {
+  height: 35px;
+}
+
+#neighbourhood_component {
+  margin-top: 15px;
+  height: calc(100% - 80px);
+  display: flex;
+  flex-flow: column nowrap;
+}
+
 #neighbourhood_list {
-  height: 45vh;
+  margin: 5px 0 0 0;
+  height: 100%;
   overflow-y: auto;
-  padding-left: 15px;
+  padding-left: 5px;
 }
 
 #neighbourhood_list a {

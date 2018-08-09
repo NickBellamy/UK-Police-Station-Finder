@@ -14,43 +14,41 @@ class NeighbourhoodInfo extends React.Component {
 
   render() {
     return (
-      <div>
+      <div id="neighbourhood_component">
         <h2>Neighbourhoods</h2>
-        <div>
-          <input
-            type="text"
-            placeholder="Filter neighbourhoods..."
-            value={this.props.filterQuery}
-            onChange={event => {
-              this.props.updateFilterQuery(event.target.value);
-            }}
-          />
-          {this.props.isLoading ? (
-            <div id="loading">
-              <img src={require('./loading.gif')} />
-            </div>
-          ) : (
-            <ul id="neighbourhood_list">
-              {this.props.filteredNeighbourhoods.map(neighbourhood => (
-                <li key={neighbourhood.id}>
-                  <a
-                    href="#"
-                    onClick={() =>
-                      this.props.selectNeighbourhood(neighbourhood.id)
-                    }
-                    className={
-                      this.props.selectedNeighbourhood === neighbourhood.id
-                        ? 'highlighted'
-                        : undefined
-                    }
-                  >
-                    {neighbourhood.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
+        <input
+          type="text"
+          placeholder="Filter neighbourhoods..."
+          value={this.props.filterQuery}
+          onChange={event => {
+            this.props.updateFilterQuery(event.target.value);
+          }}
+        />
+        {this.props.isLoading ? (
+          <div id="loading">
+            <img src={require('./loading.gif')} />
+          </div>
+        ) : (
+          <ul id="neighbourhood_list">
+            {this.props.filteredNeighbourhoods.map(neighbourhood => (
+              <li key={neighbourhood.id}>
+                <a
+                  href="#"
+                  onClick={() =>
+                    this.props.selectNeighbourhood(neighbourhood.id)
+                  }
+                  className={
+                    this.props.selectedNeighbourhood === neighbourhood.id
+                      ? 'highlighted'
+                      : undefined
+                  }
+                >
+                  {neighbourhood.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     );
   }

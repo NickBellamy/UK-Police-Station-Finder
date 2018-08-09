@@ -25,7 +25,7 @@ const RenderMap = withScriptjs(
               <div className="contact_details" style={{ maxWidth: `300px` }}>
                 <h3>{hood.name}</h3>
                 <ul>
-                  {hood.website && (
+                  {(hood.website && !hood.contact.website) && (
                     <li>
                       <span>website:</span>{' '}
                       <a href={hood.website} target="_blank">

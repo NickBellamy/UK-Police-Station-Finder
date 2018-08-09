@@ -8,10 +8,6 @@ a {
   text-decoration: none;
 }
 
-body {
-    overscroll-behavior: none;
-}
-
 ul {
   list-style: none;
 }
@@ -48,10 +44,6 @@ ul {
 #sidebar h2 {
   margin: 0 0 5px 0;
   font-size: 20px;
-}
-
-#sidebar input {
-  height: 40px;
 }
 
 #sidebar_main {
@@ -95,14 +87,14 @@ ul {
   display: flex;
   flex-flow: column nowrap;
 }
-#location_component input,
-#location_component select {
+#sidebar input,
+#sidebar select {
   height: 35px;
 }
 
 #neighbourhood_component {
   margin-top: 15px;
-  height: calc(100% - 80px);
+  height: calc(100% - 75px);
   display: flex;
   flex-flow: column nowrap;
 }

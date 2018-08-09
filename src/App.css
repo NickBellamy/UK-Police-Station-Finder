@@ -87,7 +87,14 @@ ul {
   display: flex;
   flex-flow: column nowrap;
 }
-#sidebar input,
+#sidebar input {
+  height: 33px;
+}
+
+::placeholder {
+  color:#666;
+}
+
 #sidebar select {
   height: 35px;
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { renderContact } from './helpers'
 import apiConfig from './apiKeys';
 import {
   withGoogleMap,
@@ -34,6 +35,7 @@ const RenderMap = withScriptjs(
                   )}
                   {Object.keys(hood.contact)
                     .map(key => ({ type: key, details: hood.contact[key] }))
+                    .map(contact => renderContact(contact))
                     .map(contactType => (
                       <li key={contactType.type}>
                         <span>{contactType.type}:</span> {contactType.details}

@@ -1,3 +1,5 @@
+import React from 'react';
+
 export const cleanAreaNames = areas => {
   const disallowed = [
     ' Constabulary',
@@ -34,3 +36,54 @@ export const alphabetiseHoods = hoods =>
 // Replaces "&amp;" and " and " with "&"
 const convertToAmpersand = string =>
   string.replace(/&amp;/g, '&').replace(/ and /g, ' & ');
+
+export const renderContact = contact => {
+  if (contact.type === 'twitter') {
+    if (contact.details.includes('twitter.com')) {
+      return {
+        type: contact.type,
+        details: (
+            //Replace '/#!' in url to make Surrey police twitter links work properly
+          <a href={contact.details.replace('/#!', '')} target="blank">
+            {contact.details.replace('/#!', '')}
+          </a>
+        )
+      };
+    } else {
+      return {
+        type: contact.type,
+        details: (
+          <a
+            href={`https://twitter.com/${contact.details}`}
+            target="blank"
+          >{`https://twitter.com/${contact.details}`}</a>
+        )
+      };
+    }
+  } else if (
+    (contact.details.includes('.uk') || contact.details.includes('.co')) &&
+    !contact.details.includes('@') && !contact.details.includes(' ')
+  ) {
+    if (contact.details.includes('http')) {
+      return {
+        type: contact.type,
+        details: (
+          <a href={contact.details} target="blank">
+            {contact.details}
+          </a>
+        )
+      };
+    } else {
+      return {
+        type: contact.type,
+        details: (
+          <a href={`http://${contact.details}`} target="blank">
+            {contact.details}
+          </a>
+        )
+      };
+    }
+  } else {
+    return contact;
+  }
+};

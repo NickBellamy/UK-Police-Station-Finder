@@ -13,7 +13,7 @@ class App extends Component {
     filterQuery: '',
     filteredNeighbourhoods: [],
     selectedNeighbourhood: '',
-    isLoading: true
+    isLoading: false
   };
 
   updateFilterQuery = query => {
@@ -48,14 +48,14 @@ class App extends Component {
 
   componentDidMount() {
     getForces()
-      .then(results => this.setState({ forces: results.map(force => force) }));
+      .then(results => this.setState({ forces: results.map(force => force) }))
       //This line hard codes in the default area to load when the app is
       //initialised.  It can be removed to give the user a chance to select
       //which area they want to browse initially.  The reason it is included
       //is because the app spec explicitly says that there must be pins
       //rendered on the map when the app is first loaded.  "Cambridgeshire"
       //was chosen because it has a relatively fast load time.
-      //.then(() => this.setCurrentArea('Cambridgeshire'));
+      .then(() => this.setCurrentArea('Cambridgeshire'));
   }
 
   render() {

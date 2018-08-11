@@ -14,18 +14,19 @@ const RenderMap = withScriptjs(
   withGoogleMap(props => {
     let bounds = new window.google.maps.LatLngBounds();
     props.neighbourhoods.map(hood => {
-      bounds.extend(new window.google.maps.LatLng(
-        hood.location.lat,
-        hood.location.lng
-      ));
+      bounds.extend(
+        new window.google.maps.LatLng(hood.location.lat, hood.location.lng)
+      );
     });
+    console.log(window.screen.width);
 
+    const OPTIONS = {
+      maxZoom: 11,
+      center: { lat: 52.9548, lng: -1.1581 }
+    };
+    
     return (
-      <GoogleMap
-        defaultCenter={{ lat: 52.9548, lng: -1.1581 }}
-        defaultZoom={6}
-        ref={map => map && map.fitBounds(bounds)}
-      >
+      <GoogleMap options={OPTIONS} ref={map => map && map.fitBounds(bounds)}>
         {props.neighbourhoods.map(hood => (
           <Marker
             key={hood.id}

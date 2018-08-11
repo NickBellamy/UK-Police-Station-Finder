@@ -53,17 +53,37 @@ ul {
 }
 
 #sidebar_tab {
+  position: relative;
   height: 40px;
   width: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 0 5px 5px 0;
 }
 
 #sidebar_main,
 #sidebar_tab {
   background: wheat;
+}
+
+#sidebar_tab,
+#sidebar_tab:before {
+  border-radius: 0 5px 5px 0;
+}
+
+#sidebar_tab:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+}
+
+#sidebar_main,
+#sidebar_tab:before {
+  box-shadow: 1px 1px 5px #666;
 }
 
 #tab_link {

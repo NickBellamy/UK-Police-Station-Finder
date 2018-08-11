@@ -13,18 +13,17 @@ import {
 const RenderMap = withScriptjs(
   withGoogleMap(props => {
     let bounds = new window.google.maps.LatLngBounds();
-    props.neighbourhoods.map(hood => {
+    props.neighbourhoods.map(hood =>
       bounds.extend(
         new window.google.maps.LatLng(hood.location.lat, hood.location.lng)
-      );
-    });
-    console.log(window.screen.width);
+      )
+    );
 
     const OPTIONS = {
       maxZoom: 11,
       center: { lat: 52.9548, lng: -1.1581 }
     };
-    
+
     return (
       <GoogleMap options={OPTIONS} ref={map => map && map.fitBounds(bounds)}>
         {props.neighbourhoods.map(hood => (

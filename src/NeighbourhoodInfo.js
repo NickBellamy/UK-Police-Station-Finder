@@ -26,7 +26,7 @@ class NeighbourhoodInfo extends React.Component {
         />
         {this.props.isLoading ? (
           <div id="loading">
-            <img src={require('./loading.gif')} />
+            <img src={require('./loading.gif')} alt="" />
           </div>
         ) : (
           <ul id="neighbourhood_list">

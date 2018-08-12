@@ -13,7 +13,7 @@ import {
 const RenderMap = withScriptjs(
   withGoogleMap(props => {
     let bounds = new window.google.maps.LatLngBounds();
-    props.neighbourhoods.map(hood =>
+    props.filteredNeighbourhoods.map(hood =>
       bounds.extend(
         new window.google.maps.LatLng(hood.location.lat, hood.location.lng)
       )
@@ -27,16 +27,19 @@ const RenderMap = withScriptjs(
     return (
       <GoogleMap
         options={OPTIONS}
+        //TODO: Refactor this!
         ref={map => {
           this.map = map;
-          if (map && !props.selectedNeighbourhood.id) {
+          if (map && !props.selectedNeighbourhood.id && (props.currentNeighbourhoods.length === props.filteredNeighbourhoods.length)) {
             map.fitBounds(bounds);
+          } else if(map && props.selectedNeighbourhood.id) {
+           map.panTo(props.selectedNeighbourhood.location);
           } else {
-            map && map.panTo(props.selectedNeighbourhood.location);
+              map && map.panTo(bounds.getCenter());
           }
         }}
       >
-        {props.neighbourhoods.map(hood => (
+        {props.filteredNeighbourhoods.map(hood => (
           <Marker
             key={hood.id}
             animation={hood.id === props.selectedNeighbourhood.id ? 1 : null}
@@ -85,6 +88,7 @@ const RenderMap = withScriptjs(
 
 class Map extends Component {
   static propTypes = {
+    currentNeighbourhoods: PropTypes.array.isRequired,
     filteredNeighbourhoods: PropTypes.array.isRequired,
     selectNeighbourhood: PropTypes.func.isRequired,
     selectedNeighbourhood: PropTypes.object.isRequired
@@ -93,9 +97,10 @@ class Map extends Component {
   render() {
     return (
       <RenderMap
+      currentNeighbourhoods={this.props.currentNeighbourhoods}
         selectedNeighbourhood={this.props.selectedNeighbourhood}
         selectNeighbourhood={this.props.selectNeighbourhood}
-        neighbourhoods={this.props.filteredNeighbourhoods}
+        filteredNeighbourhoods={this.props.filteredNeighbourhoods}
         googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${
           apiConfig.googleMapsKey
         }`}

@@ -86,6 +86,7 @@ class App extends Component {
             filterQuery={this.state.filterQuery}
           />
           <Map
+            currentNeighbourhoods={this.state.currentNeighbourhoods}
             filteredNeighbourhoods={this.state.filteredNeighbourhoods}
             selectNeighbourhood={this.selectNeighbourhood}
             selectedNeighbourhood={this.state.selectedNeighbourhood}

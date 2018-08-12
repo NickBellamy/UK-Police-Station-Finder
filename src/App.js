@@ -62,7 +62,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <div id="content">
+        <main>
           <FilterControls
             currentArea={this.state.currentArea}
             isLoading={this.state.isLoading}
@@ -80,7 +80,7 @@ class App extends Component {
             selectNeighbourhood={this.selectNeighbourhood}
             selectedNeighbourhood={this.state.selectedNeighbourhood}
           />
-        </div>
+        </main>
       </div>
     );
   }

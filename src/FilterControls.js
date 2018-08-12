@@ -21,7 +21,7 @@ const FilterControls = ({
   };
 
   return (
-    <div id="sidebar">
+    <section id="sidebar">
       <div id="sidebar_main">
         <LocationSelector
           currentArea={currentArea}
@@ -43,7 +43,7 @@ const FilterControls = ({
           <div id="tab_arrow">></div>
         </div>
       </a>
-    </div>
+    </section>
   );
 };
 

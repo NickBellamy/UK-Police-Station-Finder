@@ -12,6 +12,10 @@ ul {
   list-style: none;
 }
 
+main {
+  display: flex;
+}
+
 .App-header {
   height: 90px;
   display: flex;
@@ -25,10 +29,6 @@ ul {
 #menu {
   position: absolute;
   width: 70px;
-}
-
-#content {
-  display: flex;
 }
 
 /* Sidebar */

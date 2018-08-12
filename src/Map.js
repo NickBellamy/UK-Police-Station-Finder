@@ -28,7 +28,7 @@ const RenderMap = withScriptjs(
       <GoogleMap
         options={OPTIONS}
         ref={map => {
-          if (props.selectedNeighbourhood.id === undefined) {
+          if (!props.selectedNeighbourhood.id) {
             map && map.fitBounds(bounds);
           } else {
             map && map.panTo(props.selectedNeighbourhood.location);
@@ -40,10 +40,10 @@ const RenderMap = withScriptjs(
             key={hood.id}
             animation={hood.id === props.selectedNeighbourhood.id ? 1 : null}
             position={hood.location}
-            onClick={() => props.selectNeighbourhood(hood.id)}
+            onClick={() => props.selectNeighbourhood(hood)}
           >
             {props.selectedNeighbourhood.id === hood.id ? (
-              <InfoWindow onCloseClick={() => props.selectNeighbourhood('')}>
+              <InfoWindow onCloseClick={() => props.selectNeighbourhood({})}>
                 <div className="contact_details" style={{ maxWidth: `300px` }}>
                   <h3>{hood.name}</h3>
                   <ul>

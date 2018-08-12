@@ -92,6 +92,8 @@ main {
 #tab_link {
   color: hotpink;
   height: 40px;
+  position: absolute;
+  margin-left: 275px;
 }
 
 #tab_arrow {

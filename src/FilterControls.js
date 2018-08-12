@@ -54,7 +54,7 @@ FilterControls.propTypes = {
   updateFilterQuery: PropTypes.func.isRequired,
   filterNeighbourhoods: PropTypes.func.isRequired,
   selectNeighbourhood: PropTypes.func.isRequired,
-  selectedNeighbourhood: PropTypes.string.isRequired,
+  selectedNeighbourhood: PropTypes.object.isRequired,
   filteredNeighbourhoods: PropTypes.array.isRequired,
   forceNames: PropTypes.array.isRequired,
   setCurrentArea: PropTypes.func.isRequired

@@ -12,7 +12,7 @@ class App extends Component {
     currentNeighbourhoods: [],
     filterQuery: '',
     filteredNeighbourhoods: [],
-    selectedNeighbourhood: '',
+    selectedNeighbourhood: {},
     isLoading: false
   };
 
@@ -35,15 +35,15 @@ class App extends Component {
       this.setState({
         currentNeighbourhoods: neighbourhoods,
         filteredNeighbourhoods: neighbourhoods,
-        selectedNeighbourhood: '',
+        selectedNeighbourhood: {},
         filterQuery: '',
         isLoading: false
       })
     );
   };
 
-  selectNeighbourhood = neighbourhoodId => {
-    this.setState({ selectedNeighbourhood: neighbourhoodId });
+  selectNeighbourhood = neighbourhood => {
+    this.setState({ selectedNeighbourhood: neighbourhood });
   };
 
   componentDidMount() {

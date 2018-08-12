@@ -25,15 +25,24 @@ const RenderMap = withScriptjs(
     };
 
     return (
-      <GoogleMap options={OPTIONS} ref={map => map && map.fitBounds(bounds)}>
+      <GoogleMap
+        options={OPTIONS}
+        ref={map => {
+          if (props.selectedNeighbourhood.id === undefined) {
+            map && map.fitBounds(bounds);
+          } else {
+            map && map.panTo(props.selectedNeighbourhood.location);
+          }
+        }}
+      >
         {props.neighbourhoods.map(hood => (
           <Marker
             key={hood.id}
-            animation={hood.id === props.selectedNeighbourhood ? 1 : null}
+            animation={hood.id === props.selectedNeighbourhood.id ? 1 : null}
             position={hood.location}
             onClick={() => props.selectNeighbourhood(hood.id)}
           >
-            {props.selectedNeighbourhood === hood.id ? (
+            {props.selectedNeighbourhood.id === hood.id ? (
               <InfoWindow onCloseClick={() => props.selectNeighbourhood('')}>
                 <div className="contact_details" style={{ maxWidth: `300px` }}>
                   <h3>{hood.name}</h3>
@@ -72,7 +81,7 @@ class Map extends Component {
   static propTypes = {
     filteredNeighbourhoods: PropTypes.array.isRequired,
     selectNeighbourhood: PropTypes.func.isRequired,
-    selectedNeighbourhood: PropTypes.string.isRequired
+    selectedNeighbourhood: PropTypes.object.isRequired
   };
 
   render() {

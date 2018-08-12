@@ -25,7 +25,17 @@ class App extends Component {
     const filteredNeighbourhoods = this.state.currentNeighbourhoods.filter(
       hood => hood.name.toLowerCase().includes(lowerQuery)
     );
-    this.setState({ filteredNeighbourhoods });
+    this.setState({ filteredNeighbourhoods }, () =>
+      this.verifySelectedHoodInList()
+    );
+  };
+
+  verifySelectedHoodInList = () => {
+    if (this.state.selectedNeighbourhood.id) {
+      !this.state.filteredNeighbourhoods.includes(
+        this.state.selectedNeighbourhood
+      ) && this.setState({ selectedNeighbourhood: {} });
+    }
   };
 
   setCurrentArea = area => {

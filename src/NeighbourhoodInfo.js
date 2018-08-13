@@ -4,11 +4,10 @@ import PropTypes from 'prop-types';
 class NeighbourhoodInfo extends React.Component {
   static propTypes = {
     isLoading: PropTypes.bool.isRequired,
-    filteredNeighbourhoods: PropTypes.array.isRequired,
+    filter: PropTypes.object.isRequired,
     setNeighbourhood: PropTypes.func.isRequired,
     neighbourhood: PropTypes.object.isRequired,
-    setFilter: PropTypes.func.isRequired,
-    filterQuery: PropTypes.string.isRequired
+    setFilter: PropTypes.func.isRequired
   };
 
   render() {
@@ -18,7 +17,7 @@ class NeighbourhoodInfo extends React.Component {
         <input
           type="text"
           placeholder="Filter neighbourhoods..."
-          value={this.props.filterQuery}
+          value={this.props.filter.query}
           onChange={event => {
             this.props.setFilter(event.target.value);
           }}
@@ -29,7 +28,7 @@ class NeighbourhoodInfo extends React.Component {
           </div>
         ) : (
           <ul id="neighbourhood_list">
-            {this.props.filteredNeighbourhoods.map(neighbourhood => (
+            {this.props.filter.neighbourhoods.map(neighbourhood => (
               <li key={neighbourhood.id}>
                 <a
                   href="#"

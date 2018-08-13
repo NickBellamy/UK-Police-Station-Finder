@@ -5,12 +5,11 @@ import NeighbourhoodInfo from './NeighbourhoodInfo';
 
 const FilterControls = ({
   area,
-  filteredNeighbourhoods,
+  filter,
   forceNames,
   setArea,
   setNeighbourhood,
   neighbourhood,
-  filterQuery,
   setFilter,
   isLoading
 }) => {
@@ -29,9 +28,8 @@ const FilterControls = ({
         />
         <NeighbourhoodInfo
           isLoading={isLoading}
-          filterQuery={filterQuery}
           setFilter={setFilter}
-          filteredNeighbourhoods={filteredNeighbourhoods}
+          filter={filter}
           setNeighbourhood={setNeighbourhood}
           neighbourhood={neighbourhood}
         />
@@ -49,11 +47,9 @@ FilterControls.propTypes = {
   area: PropTypes.string.isRequired,
   isLoading: PropTypes.bool.isRequired,
   filter: PropTypes.object.isRequired,
-  filterQuery: PropTypes.string.isRequired,
   setFilter: PropTypes.func.isRequired,
   setNeighbourhood: PropTypes.func.isRequired,
   neighbourhood: PropTypes.object.isRequired,
-  filteredNeighbourhoods: PropTypes.array.isRequired,
   forceNames: PropTypes.array.isRequired,
   setArea: PropTypes.func.isRequired
 };

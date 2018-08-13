@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
-import Header from './Header';
 import FilterControls from './FilterControls';
+import Header from './Header';
 import Map from './Map';
-import './App.css';
 import { getForces, getNeighbourhoods } from './PoliceAPI';
+import './App.css';
 
 export default class App extends Component {
   state = {
     area: '',
-    filteredNeighbourhoods: [],
-    filterQuery: '',
+    filter: { query: '', neighbourhoods: [] },
     forces: [{ id: '', name: '' }],
     isLoading: false,
     neighbourhood: {},
@@ -17,13 +16,13 @@ export default class App extends Component {
   };
 
   //Update filterQuery and filteredNeighbourhoods based on filterQuery
-  setFilter = filterQuery => {
-    const lowerQuery = filterQuery.toLowerCase();
-    const filteredNeighbourhoods = this.state.neighbourhoods.filter(hood =>
+  setFilter = query => {
+    const lowerQuery = query.toLowerCase();
+    const filteredHoods = this.state.neighbourhoods.filter(hood =>
       hood.name.toLowerCase().includes(lowerQuery)
     );
 
-    this.setState({ filterQuery, filteredNeighbourhoods }, () =>
+    this.setState({ filter: { query, neighbourhoods: filteredHoods } }, () =>
       this.verifySelectedHoodInList()
     );
   };
@@ -31,29 +30,26 @@ export default class App extends Component {
   //Deselect current neighbourhood if it's not in filtered neighbourhoods
   //This means a selected neighbourhood can never be "hidden" from the user
   verifySelectedHoodInList = () => {
-    const { neighbourhood, filteredNeighbourhoods } = this.state;
-    !filteredNeighbourhoods.includes(neighbourhood) &&
+    const { filter, neighbourhood } = this.state;
+    !filter.neighbourhoods.includes(neighbourhood) &&
       this.setState({ neighbourhood: {} });
   };
 
   //Sets current area and resets any state relating to a previous area
   setArea = area => {
-    this.setState({ area: area, isLoading: true });
+    this.setState({ area, isLoading: true });
     const areaId = this.state.forces.find(force => force.name === area).id;
     getNeighbourhoods(areaId).then(neighbourhoods =>
       this.setState({
-        neighbourhoods: neighbourhoods,
-        filteredNeighbourhoods: neighbourhoods,
+        filter: { query: '', neighbourhoods },
+        isLoading: false,
         neighbourhood: {},
-        filterQuery: '',
-        isLoading: false
+        neighbourhoods
       })
     );
   };
 
-  setNeighbourhood = neighbourhood => {
-    this.setState({ neighbourhood: neighbourhood });
-  };
+  setNeighbourhood = neighbourhood => this.setState({ neighbourhood });
 
   componentDidMount() {
     getForces()
@@ -75,8 +71,7 @@ export default class App extends Component {
           <FilterControls
             area={this.state.area}
             isLoading={this.state.isLoading}
-            filteredNeighbourhoods={this.state.filteredNeighbourhoods}
-            filterQuery={this.state.filterQuery}
+            filter={this.state.filter}
             forceNames={this.state.forces.map(force => force.name)}
             neighbourhood={this.state.neighbourhood}
             setArea={this.setArea}
@@ -85,7 +80,7 @@ export default class App extends Component {
           />
           <Map
             availableNeighbourhoods={this.state.neighbourhoods.length}
-            filteredNeighbourhoods={this.state.filteredNeighbourhoods}
+            filteredNeighbourhoods={this.state.filter.neighbourhoods}
             neighbourhood={this.state.neighbourhood}
             setNeighbourhood={this.setNeighbourhood}
           />

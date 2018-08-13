@@ -159,6 +159,7 @@ main {
   text-decoration: underline;
 }
 
+#no_results,
 #loading {
   text-align: center;
   margin-top: 25%;

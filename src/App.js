@@ -10,7 +10,7 @@ export default class App extends Component {
     area: '',
     filter: { query: '', neighbourhoods: [] },
     forces: [{ id: '', name: '' }],
-    isLoading: false,
+    isLoading: true,
     neighbourhood: {},
     neighbourhoods: []
   };

@@ -26,15 +26,13 @@ class NeighbourhoodInfo extends React.Component {
           <div id="loading">
             <img src={require('./loading.gif')} alt="" />
           </div>
-        ) : (
+        ) : this.props.filter.neighbourhoods.length > 0 ? (
           <ul id="neighbourhood_list">
             {this.props.filter.neighbourhoods.map(neighbourhood => (
               <li key={neighbourhood.id}>
                 <a
                   href="#"
-                  onClick={() =>
-                    this.props.setNeighbourhood(neighbourhood)
-                  }
+                  onClick={() => this.props.setNeighbourhood(neighbourhood)}
                   className={
                     this.props.neighbourhood.id === neighbourhood.id
                       ? 'highlighted'
@@ -46,6 +44,8 @@ class NeighbourhoodInfo extends React.Component {
               </li>
             ))}
           </ul>
+        ) : (
+          <div id="no_results">No results found!</div>
         )}
       </div>
     );

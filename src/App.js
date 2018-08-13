@@ -80,7 +80,7 @@ export default class App extends Component {
           />
           <Map
             availableNeighbourhoods={this.state.neighbourhoods.length}
-            filteredNeighbourhoods={this.state.filter.neighbourhoods}
+            filter={this.state.filter}
             neighbourhood={this.state.neighbourhood}
             setNeighbourhood={this.setNeighbourhood}
           />

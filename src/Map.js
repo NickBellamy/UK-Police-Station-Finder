@@ -1,100 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { renderContact } from './helpers';
+import StationDetails from './StationDetails'
 import apiConfig from './apiKeys';
 import {
-  withGoogleMap,
-  withScriptjs,
+  InfoWindow,
   GoogleMap,
   Marker,
-  InfoWindow
+  withGoogleMap,
+  withScriptjs
 } from 'react-google-maps';
 
-const RenderMap = withScriptjs(
-  withGoogleMap(props => {
-    let bounds = new window.google.maps.LatLngBounds();
-    props.filteredNeighbourhoods.map(hood =>
-      bounds.extend(
-        new window.google.maps.LatLng(hood.location.lat, hood.location.lng)
-      )
-    );
-
-    const OPTIONS = {
-      maxZoom: 11,
-      center: { lat: 52.9548, lng: -1.1581 }
-    };
-
-    return (
-      <GoogleMap
-        options={OPTIONS}
-        //TODO: Refactor this!
-        ref={map => {
-          this.map = map;
-          if (
-            map &&
-            !props.neighbourhood.id &&
-            props.availableNeighbourhoods ===
-              props.filteredNeighbourhoods.length
-          ) {
-            map.fitBounds(bounds);
-          } else if (map && props.neighbourhood.id) {
-            map.panTo(props.neighbourhood.location);
-          } else {
-            map && map.panTo(bounds.getCenter());
-          }
-        }}
-      >
-        {props.filteredNeighbourhoods.map(hood => (
-          <Marker
-            key={hood.id}
-            animation={hood.id === props.neighbourhood.id ? 1 : null}
-            position={hood.location}
-            onClick={() => props.setNeighbourhood(hood)}
-          >
-            {props.neighbourhood.id === hood.id ? (
-              <InfoWindow
-                onCloseClick={() => {
-                  props.setNeighbourhood({});
-                  this.map.panTo(bounds.getCenter());
-                }}
-              >
-                <div className="contact_details" style={{ maxWidth: `300px` }}>
-                  <h3>{hood.name}</h3>
-                  <ul>
-                    {hood.website &&
-                      !hood.contact.website && (
-                        <li>
-                          <span>website:</span>{' '}
-                          <a href={hood.website} target="_blank">
-                            {hood.website}
-                          </a>
-                        </li>
-                      )}
-                    {Object.keys(hood.contact)
-                      .map(key => ({ type: key, details: hood.contact[key] }))
-                      .map(contact => renderContact(contact))
-                      .map(contactType => (
-                        <li key={contactType.type}>
-                          <span>{contactType.type}:</span> {contactType.details}
-                        </li>
-                      ))}
-                  </ul>
-                </div>
-              </InfoWindow>
-            ) : (
-              ''
-            )}
-          </Marker>
-        ))}
-      </GoogleMap>
-    );
-  })
-);
-
-class Map extends Component {
+export default class Map extends Component {
   static propTypes = {
     availableNeighbourhoods: PropTypes.number.isRequired,
-    filteredNeighbourhoods: PropTypes.array.isRequired,
+    filter: PropTypes.object.isRequired,
     setNeighbourhood: PropTypes.func.isRequired,
     neighbourhood: PropTypes.object.isRequired
   };
@@ -102,10 +21,7 @@ class Map extends Component {
   render() {
     return (
       <RenderMap
-        availableNeighbourhoods={this.props.availableNeighbourhoods}
-        neighbourhood={this.props.neighbourhood}
-        setNeighbourhood={this.props.setNeighbourhood}
-        filteredNeighbourhoods={this.props.filteredNeighbourhoods}
+        {...this.props}
         googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${
           apiConfig.googleMapsKey
         }`}
@@ -119,4 +35,61 @@ class Map extends Component {
   }
 }
 
-export default Map;
+const RenderMap = withScriptjs(
+  withGoogleMap(
+    ({ availableNeighbourhoods, filter, neighbourhood, setNeighbourhood }) => {
+      //Create bounds object from filtered markers - used later to center map
+      let bounds = new window.google.maps.LatLngBounds();
+      filter.neighbourhoods.map(hood =>
+        bounds.extend(
+          new window.google.maps.LatLng(hood.location.lat, hood.location.lng)
+        )
+      );
+
+      //Handles panning of map as panning can only be called on subsequent
+      //renders of the map - initial render uses fitBounds instead
+      const focusMap = map => {
+        this.map = map;
+        if (map) {
+          //If no neighbourhood selected & no neighbourhoods filtered, it
+          //must be the initial load of the map
+          !neighbourhood.id &&
+          availableNeighbourhoods === filter.neighbourhoods.length
+            ? //fitBounds called as panTo doesn't work unless map initialised
+              map.fitBounds(bounds)
+            : //Else pan to selected neighbourhood or center of bounds
+              map.panTo(neighbourhood.location || bounds.getCenter());
+        }
+      };
+
+      return (
+        <GoogleMap
+          center={{ lat: 52.9397, lng: 1.1329 }} //Mandatory paramater
+          ref={map => focusMap(map)}
+        >
+          {filter.neighbourhoods.map(hood => (
+            <Marker
+              key={hood.id}
+              //animation = 1 is bouncing effect, null doesn't render the prop
+              animation={hood.id === neighbourhood.id ? 1 : null}
+              position={hood.location}
+              onClick={() => setNeighbourhood(hood)}
+            >
+              {//If this marker is selected, render InfoWindow
+              neighbourhood.id === hood.id && (
+                <InfoWindow
+                  onCloseClick={() => {
+                    setNeighbourhood({}); //Unset selected neighbourhood
+                    this.map.panTo(bounds.getCenter());
+                  }}
+                >
+                  <StationDetails hood={hood} />
+                </InfoWindow>
+              )}
+            </Marker>
+          ))}
+        </GoogleMap>
+      );
+    }
+  )
+);

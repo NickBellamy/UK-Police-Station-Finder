@@ -164,3 +164,7 @@ main {
   text-align: center;
   margin-top: 25%;
 }
+
+#contact_details {
+    max-width: 300px;
+}

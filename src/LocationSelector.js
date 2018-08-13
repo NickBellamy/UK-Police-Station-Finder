@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const LocationSelector = ({ forceNames, setCurrentArea, currentArea }) => (
+const LocationSelector = ({ forceNames, setArea, area }) => (
   <div id="location_component">
     <h2>Location</h2>
     <select
-      value={currentArea}
-      onChange={event => setCurrentArea(event.target.value)}
+      value={area}
+      onChange={event => setArea(event.target.value)}
     >
       <option disabled value="default">
         Select a region...
@@ -21,9 +21,9 @@ const LocationSelector = ({ forceNames, setCurrentArea, currentArea }) => (
 );
 
 LocationSelector.propTypes = {
-  currentArea: PropTypes.string.isRequired,
+  area: PropTypes.string.isRequired,
   forceNames: PropTypes.array.isRequired,
-  setCurrentArea: PropTypes.func.isRequired
+  setArea: PropTypes.func.isRequired
 };
 
 export default LocationSelector;

@@ -5,55 +5,54 @@ import Map from './Map';
 import './App.css';
 import { getForces, getNeighbourhoods } from './PoliceAPI';
 
-class App extends Component {
+export default class App extends Component {
   state = {
-    forces: [{ id: '', name: '' }],
-    currentArea: '',
-    currentNeighbourhoods: [],
-    filterQuery: '',
+    area: '',
     filteredNeighbourhoods: [],
-    selectedNeighbourhood: {},
-    isLoading: false
+    filterQuery: '',
+    forces: [{ id: '', name: '' }],
+    isLoading: false,
+    neighbourhood: {},
+    neighbourhoods: []
   };
 
-  updateFilterQuery = query => {
-    this.setState({ filterQuery: query }, () => this.filterNeighbourhoods());
-  };
-
-  filterNeighbourhoods = () => {
-    let lowerQuery = this.state.filterQuery.toLowerCase();
-    const filteredNeighbourhoods = this.state.currentNeighbourhoods.filter(
-      hood => hood.name.toLowerCase().includes(lowerQuery)
+  //Update filterQuery and filteredNeighbourhoods based on filterQuery
+  setFilter = filterQuery => {
+    const lowerQuery = filterQuery.toLowerCase();
+    const filteredNeighbourhoods = this.state.neighbourhoods.filter(hood =>
+      hood.name.toLowerCase().includes(lowerQuery)
     );
-    this.setState({ filteredNeighbourhoods }, () =>
+
+    this.setState({ filterQuery, filteredNeighbourhoods }, () =>
       this.verifySelectedHoodInList()
     );
   };
 
+  //Deselect current neighbourhood if it's not in filtered neighbourhoods
+  //This means a selected neighbourhood can never be "hidden" from the user
   verifySelectedHoodInList = () => {
-    if (this.state.selectedNeighbourhood.id) {
-      !this.state.filteredNeighbourhoods.includes(
-        this.state.selectedNeighbourhood
-      ) && this.setState({ selectedNeighbourhood: {} });
-    }
+    const { neighbourhood, filteredNeighbourhoods } = this.state;
+    !filteredNeighbourhoods.includes(neighbourhood) &&
+      this.setState({ neighbourhood: {} });
   };
 
-  setCurrentArea = area => {
-    this.setState({ currentArea: area, isLoading: true });
+  //Sets current area and resets any state relating to a previous area
+  setArea = area => {
+    this.setState({ area: area, isLoading: true });
     const areaId = this.state.forces.find(force => force.name === area).id;
     getNeighbourhoods(areaId).then(neighbourhoods =>
       this.setState({
-        currentNeighbourhoods: neighbourhoods,
+        neighbourhoods: neighbourhoods,
         filteredNeighbourhoods: neighbourhoods,
-        selectedNeighbourhood: {},
+        neighbourhood: {},
         filterQuery: '',
         isLoading: false
       })
     );
   };
 
-  selectNeighbourhood = neighbourhood => {
-    this.setState({ selectedNeighbourhood: neighbourhood });
+  setNeighbourhood = neighbourhood => {
+    this.setState({ neighbourhood: neighbourhood });
   };
 
   componentDidMount() {
@@ -63,9 +62,9 @@ class App extends Component {
       //initialised.  It can be removed to give the user a chance to select
       //which area they want to browse initially.  The reason it is included
       //is because the app spec explicitly says that there must be pins
-      //rendered on the map when the app is first loaded.  "Cambridgeshire"
-      //was chosen because it has a relatively fast load time.
-      .then(() => this.setCurrentArea('Cambridgeshire'));
+      //rendered on the map when the app is first loaded.  "Leicestershire"
+      //was chosen because it has a fast load time, and a good range of data.
+      .then(() => this.setArea('Leicestershire'));
   }
 
   render() {
@@ -74,26 +73,24 @@ class App extends Component {
         <Header />
         <main>
           <FilterControls
-            currentArea={this.state.currentArea}
+            area={this.state.area}
             isLoading={this.state.isLoading}
-            forceNames={this.state.forces.map(force => force.name)}
-            setCurrentArea={this.setCurrentArea}
-            selectNeighbourhood={this.selectNeighbourhood}
-            selectedNeighbourhood={this.state.selectedNeighbourhood}
             filteredNeighbourhoods={this.state.filteredNeighbourhoods}
-            updateFilterQuery={this.updateFilterQuery}
             filterQuery={this.state.filterQuery}
+            forceNames={this.state.forces.map(force => force.name)}
+            neighbourhood={this.state.neighbourhood}
+            setArea={this.setArea}
+            setFilter={this.setFilter}
+            setNeighbourhood={this.setNeighbourhood}
           />
           <Map
-            currentNeighbourhoods={this.state.currentNeighbourhoods}
+            availableNeighbourhoods={this.state.neighbourhoods.length}
             filteredNeighbourhoods={this.state.filteredNeighbourhoods}
-            selectNeighbourhood={this.selectNeighbourhood}
-            selectedNeighbourhood={this.state.selectedNeighbourhood}
+            neighbourhood={this.state.neighbourhood}
+            setNeighbourhood={this.setNeighbourhood}
           />
         </main>
       </div>
     );
   }
 }
-
-export default App;

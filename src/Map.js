@@ -32,13 +32,13 @@ const RenderMap = withScriptjs(
           this.map = map;
           if (
             map &&
-            !props.selectedNeighbourhood.id &&
-            props.currentNeighbourhoods.length ===
+            !props.neighbourhood.id &&
+            props.availableNeighbourhoods ===
               props.filteredNeighbourhoods.length
           ) {
             map.fitBounds(bounds);
-          } else if (map && props.selectedNeighbourhood.id) {
-            map.panTo(props.selectedNeighbourhood.location);
+          } else if (map && props.neighbourhood.id) {
+            map.panTo(props.neighbourhood.location);
           } else {
             map && map.panTo(bounds.getCenter());
           }
@@ -47,14 +47,14 @@ const RenderMap = withScriptjs(
         {props.filteredNeighbourhoods.map(hood => (
           <Marker
             key={hood.id}
-            animation={hood.id === props.selectedNeighbourhood.id ? 1 : null}
+            animation={hood.id === props.neighbourhood.id ? 1 : null}
             position={hood.location}
-            onClick={() => props.selectNeighbourhood(hood)}
+            onClick={() => props.setNeighbourhood(hood)}
           >
-            {props.selectedNeighbourhood.id === hood.id ? (
+            {props.neighbourhood.id === hood.id ? (
               <InfoWindow
                 onCloseClick={() => {
-                  props.selectNeighbourhood({});
+                  props.setNeighbourhood({});
                   this.map.panTo(bounds.getCenter());
                 }}
               >
@@ -93,18 +93,18 @@ const RenderMap = withScriptjs(
 
 class Map extends Component {
   static propTypes = {
-    currentNeighbourhoods: PropTypes.array.isRequired,
+    availableNeighbourhoods: PropTypes.number.isRequired,
     filteredNeighbourhoods: PropTypes.array.isRequired,
-    selectNeighbourhood: PropTypes.func.isRequired,
-    selectedNeighbourhood: PropTypes.object.isRequired
+    setNeighbourhood: PropTypes.func.isRequired,
+    neighbourhood: PropTypes.object.isRequired
   };
 
   render() {
     return (
       <RenderMap
-        currentNeighbourhoods={this.props.currentNeighbourhoods}
-        selectedNeighbourhood={this.props.selectedNeighbourhood}
-        selectNeighbourhood={this.props.selectNeighbourhood}
+        availableNeighbourhoods={this.props.availableNeighbourhoods}
+        neighbourhood={this.props.neighbourhood}
+        setNeighbourhood={this.props.setNeighbourhood}
         filteredNeighbourhoods={this.props.filteredNeighbourhoods}
         googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${
           apiConfig.googleMapsKey

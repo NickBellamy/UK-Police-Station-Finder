@@ -5,9 +5,9 @@ class NeighbourhoodInfo extends React.Component {
   static propTypes = {
     isLoading: PropTypes.bool.isRequired,
     filteredNeighbourhoods: PropTypes.array.isRequired,
-    selectNeighbourhood: PropTypes.func.isRequired,
-    selectedNeighbourhood: PropTypes.object.isRequired,
-    updateFilterQuery: PropTypes.func.isRequired,
+    setNeighbourhood: PropTypes.func.isRequired,
+    neighbourhood: PropTypes.object.isRequired,
+    setFilter: PropTypes.func.isRequired,
     filterQuery: PropTypes.string.isRequired
   };
 
@@ -20,7 +20,7 @@ class NeighbourhoodInfo extends React.Component {
           placeholder="Filter neighbourhoods..."
           value={this.props.filterQuery}
           onChange={event => {
-            this.props.updateFilterQuery(event.target.value);
+            this.props.setFilter(event.target.value);
           }}
         />
         {this.props.isLoading ? (
@@ -34,10 +34,10 @@ class NeighbourhoodInfo extends React.Component {
                 <a
                   href="#"
                   onClick={() =>
-                    this.props.selectNeighbourhood(neighbourhood)
+                    this.props.setNeighbourhood(neighbourhood)
                   }
                   className={
-                    this.props.selectedNeighbourhood.id === neighbourhood.id
+                    this.props.neighbourhood.id === neighbourhood.id
                       ? 'highlighted'
                       : undefined
                   }

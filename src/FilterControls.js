@@ -4,15 +4,14 @@ import LocationSelector from './LocationSelector';
 import NeighbourhoodInfo from './NeighbourhoodInfo';
 
 const FilterControls = ({
-  currentArea,
+  area,
   filteredNeighbourhoods,
   forceNames,
-  setCurrentArea,
-  selectNeighbourhood,
-  selectedNeighbourhood,
-  filterNeighbourhoods,
+  setArea,
+  setNeighbourhood,
+  neighbourhood,
   filterQuery,
-  updateFilterQuery,
+  setFilter,
   isLoading
 }) => {
   const toggleMenu = () => {
@@ -24,17 +23,17 @@ const FilterControls = ({
     <section id="sidebar" className="open">
       <div id="sidebar_main">
         <LocationSelector
-          currentArea={currentArea}
+          area={area}
           forceNames={forceNames}
-          setCurrentArea={setCurrentArea}
+          setArea={setArea}
         />
         <NeighbourhoodInfo
           isLoading={isLoading}
           filterQuery={filterQuery}
-          updateFilterQuery={updateFilterQuery}
+          setFilter={setFilter}
           filteredNeighbourhoods={filteredNeighbourhoods}
-          selectNeighbourhood={selectNeighbourhood}
-          selectedNeighbourhood={selectedNeighbourhood}
+          setNeighbourhood={setNeighbourhood}
+          neighbourhood={neighbourhood}
         />
       </div>
       <a id="tab_link" href="#" onClick={toggleMenu}>
@@ -47,15 +46,16 @@ const FilterControls = ({
 };
 
 FilterControls.propTypes = {
-  currentArea: PropTypes.string.isRequired,
+  area: PropTypes.string.isRequired,
   isLoading: PropTypes.bool.isRequired,
+  filter: PropTypes.object.isRequired,
   filterQuery: PropTypes.string.isRequired,
-  updateFilterQuery: PropTypes.func.isRequired,
-  selectNeighbourhood: PropTypes.func.isRequired,
-  selectedNeighbourhood: PropTypes.object.isRequired,
+  setFilter: PropTypes.func.isRequired,
+  setNeighbourhood: PropTypes.func.isRequired,
+  neighbourhood: PropTypes.object.isRequired,
   filteredNeighbourhoods: PropTypes.array.isRequired,
   forceNames: PropTypes.array.isRequired,
-  setCurrentArea: PropTypes.func.isRequired
+  setArea: PropTypes.func.isRequired
 };
 
 export default FilterControls;

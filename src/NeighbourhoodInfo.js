@@ -1,55 +1,67 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-class NeighbourhoodInfo extends React.Component {
-  static propTypes = {
-    isLoading: PropTypes.bool.isRequired,
-    filter: PropTypes.object.isRequired,
-    setNeighbourhood: PropTypes.func.isRequired,
-    neighbourhood: PropTypes.object.isRequired,
-    setFilter: PropTypes.func.isRequired
-  };
+const NeighbourhoodInfo = ({
+  filter,
+  isLoading,
+  neighbourhood,
+  setFilter,
+  setNeighbourhood
+}) => (
+  <div id="neighbourhood_component">
+    <h2>Neighbourhoods</h2>
+    <input
+      type="text"
+      placeholder="Filter neighbourhoods..."
+      value={filter.query}
+      onChange={event => setFilter(event.target.value)}
+    />
+    {isLoading ? (
+      <Loading />
+    ) : filter.neighbourhoods.length > 0 ? (
+      <NeighbourhoodList {...{ filter, neighbourhood, setNeighbourhood }} />
+    ) : (
+      <NoResults />
+    )}
+  </div>
+);
 
-  render() {
-    return (
-      <div id="neighbourhood_component">
-        <h2>Neighbourhoods</h2>
-        <input
-          type="text"
-          placeholder="Filter neighbourhoods..."
-          value={this.props.filter.query}
-          onChange={event => {
-            this.props.setFilter(event.target.value);
-          }}
-        />
-        {this.props.isLoading ? (
-          <div id="loading">
-            <img src={require('./loading.gif')} alt="" />
-          </div>
-        ) : this.props.filter.neighbourhoods.length > 0 ? (
-          <ul id="neighbourhood_list">
-            {this.props.filter.neighbourhoods.map(neighbourhood => (
-              <li key={neighbourhood.id}>
-                <a
-                  href="#"
-                  onClick={() => this.props.setNeighbourhood(neighbourhood)}
-                  className={
-                    this.props.neighbourhood.id === neighbourhood.id
-                      ? 'highlighted'
-                      : undefined
-                  }
-                >
-                  {neighbourhood.name}
-                </a>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <div id="no_results">No results found!</div>
-        )}
-      </div>
-    );
-  }
-}
+const NeighbourhoodList = ({ filter, neighbourhood, setNeighbourhood }) => (
+  <ul id="neighbourhood_list">
+    {filter.neighbourhoods.map(hood => (
+      <li key={hood.id}>
+        <a
+          href="#"
+          onClick={() => setNeighbourhood(hood)}
+          className={hood.id === neighbourhood.id ? 'highlighted' : undefined}
+        >
+          {hood.name}
+        </a>
+      </li>
+    ))}
+  </ul>
+);
+
+const Loading = () => (
+  <div id="loading">
+    <img src={require('./loading.gif')} alt="" />
+  </div>
+);
+
+const NoResults = () => <div id="no_results">No results found!</div>;
+
+NeighbourhoodInfo.propTypes = {
+  filter: PropTypes.object.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  neighbourhood: PropTypes.object.isRequired,
+  setFilter: PropTypes.func.isRequired,
+  setNeighbourhood: PropTypes.func.isRequired
+};
+
+NeighbourhoodList.propTypes = {
+  filter: PropTypes.object.isRequired,
+  neighbourhood: PropTypes.object.isRequired,
+  setNeighbourhood: PropTypes.func.isRequired
+};
 
 export default NeighbourhoodInfo;

@@ -15,13 +15,9 @@ const Sidebar = ({
 }) => (
   <section id="sidebar" className="open">
     <div id="sidebar_main">
-      <LocationSelector area={area} forceNames={forceNames} setArea={setArea} />
+      <LocationSelector {...{ area, forceNames, setArea }} />
       <NeighbourhoodInfo
-        isLoading={isLoading}
-        setFilter={setFilter}
-        filter={filter}
-        setNeighbourhood={setNeighbourhood}
-        neighbourhood={neighbourhood}
+        {...{ isLoading, setFilter, filter, setNeighbourhood, neighbourhood }}
       />
     </div>
     <Tab />

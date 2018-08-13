@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import FilterControls from './FilterControls';
 import Header from './Header';
 import Map from './Map';
+import Sidebar from './Sidebar';
 import { getForces, getNeighbourhoods } from './PoliceAPI';
 import './App.css';
 
@@ -68,7 +68,7 @@ export default class App extends Component {
       <div className="App">
         <Header />
         <main>
-          <FilterControls
+          <Sidebar
             area={this.state.area}
             isLoading={this.state.isLoading}
             filter={this.state.filter}

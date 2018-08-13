@@ -21,7 +21,7 @@ const FilterControls = ({
   };
 
   return (
-    <section id="sidebar">
+    <section id="sidebar" className="open">
       <div id="sidebar_main">
         <LocationSelector
           currentArea={currentArea}
@@ -39,7 +39,7 @@ const FilterControls = ({
       </div>
       <a id="tab_link" href="#" onClick={toggleMenu}>
         <div id="sidebar_tab">
-          <div id="tab_arrow">></div>
+          <div id="tab_arrow">{`<`}</div>
         </div>
       </a>
     </section>

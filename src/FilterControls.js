@@ -33,7 +33,6 @@ const FilterControls = ({
           filterQuery={filterQuery}
           updateFilterQuery={updateFilterQuery}
           filteredNeighbourhoods={filteredNeighbourhoods}
-          filterNeighbourhoods={filterNeighbourhoods}
           selectNeighbourhood={selectNeighbourhood}
           selectedNeighbourhood={selectedNeighbourhood}
         />
@@ -52,7 +51,6 @@ FilterControls.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   filterQuery: PropTypes.string.isRequired,
   updateFilterQuery: PropTypes.func.isRequired,
-  filterNeighbourhoods: PropTypes.func.isRequired,
   selectNeighbourhood: PropTypes.func.isRequired,
   selectedNeighbourhood: PropTypes.object.isRequired,
   filteredNeighbourhoods: PropTypes.array.isRequired,

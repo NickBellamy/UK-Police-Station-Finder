@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 class NeighbourhoodInfo extends React.Component {
   static propTypes = {
     isLoading: PropTypes.bool.isRequired,
-    filterNeighbourhoods: PropTypes.func.isRequired,
     filteredNeighbourhoods: PropTypes.array.isRequired,
     selectNeighbourhood: PropTypes.func.isRequired,
     selectedNeighbourhood: PropTypes.object.isRequired,

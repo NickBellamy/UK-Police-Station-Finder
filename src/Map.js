@@ -30,12 +30,17 @@ const RenderMap = withScriptjs(
         //TODO: Refactor this!
         ref={map => {
           this.map = map;
-          if (map && !props.selectedNeighbourhood.id && (props.currentNeighbourhoods.length === props.filteredNeighbourhoods.length)) {
+          if (
+            map &&
+            !props.selectedNeighbourhood.id &&
+            props.currentNeighbourhoods.length ===
+              props.filteredNeighbourhoods.length
+          ) {
             map.fitBounds(bounds);
-          } else if(map && props.selectedNeighbourhood.id) {
-           map.panTo(props.selectedNeighbourhood.location);
+          } else if (map && props.selectedNeighbourhood.id) {
+            map.panTo(props.selectedNeighbourhood.location);
           } else {
-              map && map.panTo(bounds.getCenter());
+            map && map.panTo(bounds.getCenter());
           }
         }}
       >
@@ -50,7 +55,7 @@ const RenderMap = withScriptjs(
               <InfoWindow
                 onCloseClick={() => {
                   props.selectNeighbourhood({});
-                  this.map.panTo(bounds.getCenter() );
+                  this.map.panTo(bounds.getCenter());
                 }}
               >
                 <div className="contact_details" style={{ maxWidth: `300px` }}>
@@ -97,7 +102,7 @@ class Map extends Component {
   render() {
     return (
       <RenderMap
-      currentNeighbourhoods={this.props.currentNeighbourhoods}
+        currentNeighbourhoods={this.props.currentNeighbourhoods}
         selectedNeighbourhood={this.props.selectedNeighbourhood}
         selectNeighbourhood={this.props.selectNeighbourhood}
         filteredNeighbourhoods={this.props.filteredNeighbourhoods}

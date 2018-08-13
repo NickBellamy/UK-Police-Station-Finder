@@ -76,7 +76,6 @@ class App extends Component {
           <FilterControls
             currentArea={this.state.currentArea}
             isLoading={this.state.isLoading}
-            filterNeighbourhoods={this.filterNeighbourhoods}
             forceNames={this.state.forces.map(force => force.name)}
             setCurrentArea={this.setCurrentArea}
             selectNeighbourhood={this.selectNeighbourhood}

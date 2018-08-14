@@ -1,3 +1,5 @@
+/* Main element */
+
 html,
 body,
 h1,
@@ -16,52 +18,61 @@ main {
   display: flex;
 }
 
-.App-header {
-  height: 90px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #496aa8;
-  color: #fff;
-  text-shadow: 2px 2px 2px #222;
+::placeholder {
+  color: #666;
 }
 
-#menu {
-  position: absolute;
-  width: 70px;
+/* Header */
+
+#app_header {
+  align-items: center;
+  background: #496aa8;
+  color: #fff;
+  display: flex;
+  height: 90px;
+  justify-content: center;
+  text-shadow: 2px 2px 2px #222;
 }
 
 /* Sidebar */
 
 #sidebar {
-  height: calc(100vh - 175px);
-  position: fixed;
-  z-index: 1;
-  margin-left: -275px;
   display: flex;
+  height: calc(100vh - 175px);
   justify-content: space-between;
+  margin: 55px 0 0 -275px;
+  position: fixed;
   transition: margin 1s;
-  margin-top: 55px;
+  z-index: 1;
+}
+
+#sidebar input {
+  height: 33px;
+  padding: 0 5px;
+}
+
+#sidebar select {
+  height: 35px;
 }
 
 #sidebar h2 {
-  margin: 0 0 5px 0;
   font-size: 20px;
+  margin: 0 0 5px 0;
 }
 
 #sidebar_main {
-  width: 235px;
-  padding: 20px;
   border-radius: 0 0 10px 0;
+  padding: 20px;
+  width: 235px;
 }
 
 #sidebar_tab {
-  position: relative;
-  height: 40px;
-  width: 40px;
-  display: flex;
   align-items: center;
+  display: flex;
+  height: 40px;
   justify-content: center;
+  position: relative;
+  width: 40px;
 }
 
 #sidebar_main,
@@ -74,13 +85,15 @@ main {
   border-radius: 0 5px 5px 0;
 }
 
+/*This element sits below the #sidebar_tab which means that when
+ box-shadow is applied, the shadow doesn't bleed into other divs*/
 #sidebar_tab:before {
-  content: '';
-  position: absolute;
-  top: 0;
   bottom: 0;
+  content: '';
   left: 0;
+  position: absolute;
   right: 0;
+  top: 0;
   z-index: -1;
 }
 
@@ -92,8 +105,8 @@ main {
 #tab_link {
   color: hotpink;
   height: 40px;
-  position: absolute;
   margin-left: 275px;
+  position: absolute;
 }
 
 #tab_arrow {
@@ -112,46 +125,23 @@ main {
   display: flex;
   flex-flow: column nowrap;
 }
-#sidebar input {
-  height: 33px;
-}
-
-::placeholder {
-  color: #666;
-}
-
-#sidebar select {
-  height: 35px;
-}
-
-#sidebar input {
-  padding: 0 5px;
-}
 
 #neighbourhood_component {
-  margin-top: 15px;
-  height: calc(100% - 75px);
   display: flex;
   flex-flow: column nowrap;
+  height: calc(100% - 75px);
+  margin-top: 15px;
 }
 
 #neighbourhood_list {
-  margin: 5px 0 0 0;
   height: calc(100% - 75px);
+  margin: 5px 0 0 0;
   overflow-y: auto;
   padding-left: 5px;
 }
 
 #neighbourhood_list a {
   color: steelblue;
-}
-
-.contact_details span {
-  font-weight: bold;
-}
-
-.contact_details ul {
-  padding-left: 23px;
 }
 
 .highlighted {
@@ -161,11 +151,21 @@ main {
 
 #no_results,
 #loading {
-  text-align: center;
   margin-top: 25%;
+  text-align: center;
 }
+
+/* Map */
 
 .contact_details {
   max-width: 300px;
   overflow-wrap: break-word;
+}
+
+.contact_details span {
+  font-weight: bold;
+}
+
+.contact_details ul {
+  padding-left: 5px;
 }

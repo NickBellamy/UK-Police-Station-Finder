@@ -6,12 +6,12 @@ This project is part of the Udacity Nanodegree program.  No starting code was pr
 
 ### The following criteria must be met:
 
-***Interface***
+**Interface**
 
 * All application components render on-screen in a responsive manner
 * All application components are usable across modern desktop, tablet, and phone browsers
 
-***Application Functionality***
+**Application Functionality**
 
 * Includes a text input field or dropdown menu that filters the map markers and list items to locations matching the text input or selection. Filter function runs error-free
 * A list-view of location names is provided which displays all locations by default, and displays the filtered subset of locations when a filter is applied
@@ -21,31 +21,31 @@ This project is part of the Udacity Nanodegree program.  No starting code was pr
 * Clicking a marker displays unique information about a location somewhere on the page (modal, separate div, inside an infoWindow)
 * Any additional custom functionality provided in the app functions error-free
 
-***Asynchronous Data Usage***
+**Asynchronous Data Usage**
 
 * Application utilizes the Google Maps API or another mapping system and at least one non-Google third-party API
 * All data requests are retrieved in an asynchronous manner using either the Fetch API or XMLHttpRequest
 * Data requests that fail are handled gracefully using common fallback techniques (i.e. AJAX error or fail methods). 'Gracefully' means the user isn’t left wondering why a component isn’t working. If an API doesn’t load there should be some visible indication on the page that it didn’t load
 
-***Documentation***
+**Documentation**
 
 * A `README` file is included detailing all steps required to successfully run the application
 * Comments are present and effectively explain longer code procedures
 
-***Location Details Functionality***
+**Location Details Functionality**
 
 * Functionality providing additional data about a location is provided and sourced from a 3rd party API. Information can be provided either in the marker’s `infoWindow`, or in an `HTML` element in the `DOM` (a sidebar, the list view, a modal, etc.)
 * Provide attribution for the source of additional data. For example, if using Foursquare, indicate somewhere in your UI and in your README that you are using Foursquare data
 * Application runs without console errors
 * Functionality is presented in a usable and responsive manner
 
-***Accessibility***
+**Accessibility**
 
 * Focus is appropriately managed allowing users to noticeably tab through each of the important elements of the page. Modal or interstitial windows appropriately lock focus
 * Elements on the page use the appropriate semantic elements. For those elements in which a semantic element is not available, appropriate ARIA roles are defined
 * All content-related images include appropriate alternate text that clearly describes the content of the image
 
-***Offline Use***
+**Offline Use**
 
 * When available in the browser, the site uses a service worker to cache responses to requests for site assets. Visited pages are rendered when there is no network access
 
@@ -62,11 +62,47 @@ React was used to build this app, with the help of the `create-react-app` npm pa
 
 ## Installation
 
-### NPM
+### Important
+
+This project does not come with a Google API key, so you will have to acquire your own [from Google](https://developers.google.com/maps/documentation/javascript/get-api-key), or run the app in development mode.
+
+#### Development Mode
+
+To run the app in development mode, in `Map.js` remove or comment out the line `import apiConfig from '../api/apiKeys';` and then change line 
+
+``       
+googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${
+  apiConfig.googleMapsKey
+}`}
+``
+
+to
+
+``       
+googleMapURL={`https://maps.googleapis.com/maps/api/js`}
+``
+
+#### Using your own API key
+
+To use your own API key, in `Map.js` remove or comment out the line `import apiConfig from '../api/apiKeys';` and then change line 
+
+``       
+googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${
+  apiConfig.googleMapsKey
+}`}
+``
+
+to
+
+``       
+googleMapURL={`https://maps.googleapis.com/maps/api/js?key=[YOUR KEY HERE]`}
+``
+
+### NPM Installation
 * install all project dependencies with `npm install`
 * start the development server with `npm start`
 
-### Yarn
+### Yarn Installation
 * install all project dependencies with `yarn install`
 * start the development server with `yarn start`
 

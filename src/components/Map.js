@@ -66,7 +66,15 @@ const RenderMap = withScriptjs(
 
       return (
         <GoogleMap
-          center={{ lat: 52.9397, lng: 1.1329 }} //Mandatory paramater
+          defaultOptions={{
+            center: { lat: 52.9397, lng: 1.1329 }, //Mandatory paramater
+            mapTypeControlOptions: {
+              mapTypeIds: [
+                window.google.maps.MapTypeId.ROADMAP,
+                window.google.maps.MapTypeId.SATELLITE
+              ]
+            }
+          }}
           ref={map => focusMap(map)}
         >
           {filter.neighbourhoods.map(hood => (

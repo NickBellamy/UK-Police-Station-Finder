@@ -49,9 +49,7 @@ export const webLinkify = url => (
 
 //Strips array of strings from string and converts "and" to "&"
 const cleanString = (string, disallowed) => {
-  for (let i = 0; i < disallowed.length; i++) {
-    string = string.replace(disallowed[i], '');
-  }
+  disallowed.forEach(element => (string = string.replace(element, '')));
   return convertToAmpersand(string);
 };
 

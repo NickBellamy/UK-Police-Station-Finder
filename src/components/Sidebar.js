@@ -14,7 +14,7 @@ const Sidebar = ({
   setNeighbourhood
 }) => (
   <section id="sidebar" className="open">
-    <div id="sidebar_main">
+    <div id="sidebar-main">
       <LocationSelector {...{ area, forceNames, setArea }} />
       <NeighbourhoodInfo
         {...{ isLoading, setFilter, filter, setNeighbourhood, neighbourhood }}
@@ -26,15 +26,15 @@ const Sidebar = ({
 
 const Tab = () => (
   <a
-    id="tab_link"
+    id="tab-link"
     href="#"
     onClick={() => {
       document.getElementById('sidebar').classList.toggle('open');
-      document.getElementById('tab_arrow').classList.toggle('rotate');
+      document.getElementById('tab-arrow').classList.toggle('rotate');
     }}
   >
-    <div id="sidebar_tab">
-      <div id="tab_arrow">{`<`}</div>
+    <div id="sidebar-tab">
+      <div id="tab-arrow">{`<`}</div>
     </div>
   </a>
 );

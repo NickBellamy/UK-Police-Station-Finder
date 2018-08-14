@@ -1,11 +1,11 @@
 /* Main element */
-
 html,
 body,
 h1,
 h2 {
   font-family: 'Archivo Narrow', sans-serif;
 }
+
 a {
   text-decoration: none;
 }
@@ -23,8 +23,7 @@ main {
 }
 
 /* Header */
-
-#app_header {
+#app-header {
   align-items: center;
   background: #496aa8;
   color: #fff;
@@ -35,12 +34,12 @@ main {
 }
 
 @media screen and (max-width: 360px) {
-  #app_header h1 {
+  #app-header h1 {
     font-size: 1.7em;
   }
 }
-/* Sidebar */
 
+/* Sidebar */
 #sidebar {
   display: flex;
   height: calc(100vh - 175px);
@@ -65,13 +64,13 @@ main {
   margin: 0 0 5px 0;
 }
 
-#sidebar_main {
+#sidebar-main {
   border-radius: 0 0 10px 0;
   padding: 20px;
   width: 235px;
 }
 
-#sidebar_tab {
+#sidebar-tab {
   align-items: center;
   display: flex;
   height: 40px;
@@ -80,19 +79,19 @@ main {
   width: 40px;
 }
 
-#sidebar_main,
-#sidebar_tab {
+#sidebar-main,
+#sidebar-tab {
   background: wheat;
 }
 
-#sidebar_tab,
-#sidebar_tab:before {
+#sidebar-tab,
+#sidebar-tab:before {
   border-radius: 0 5px 5px 0;
 }
 
-/*This element sits below the #sidebar_tab which means that when
+/*This element sits below the #sidebar-tab which means that when
  box-shadow is applied, the shadow doesn't bleed into other divs*/
-#sidebar_tab:before {
+#sidebar-tab:before {
   bottom: 0;
   content: '';
   left: 0;
@@ -102,19 +101,19 @@ main {
   z-index: -1;
 }
 
-#sidebar_main,
-#sidebar_tab:before {
+#sidebar-main,
+#sidebar-tab:before {
   box-shadow: 1px 1px 5px #666;
 }
 
-#tab_link {
+#tab-link {
   color: hotpink;
   height: 40px;
   margin-left: 275px;
   position: absolute;
 }
 
-#tab_arrow {
+#tab-arrow {
   transition: transform 1s;
 }
 
@@ -126,26 +125,26 @@ main {
   transform: rotate(180deg) !important;
 }
 
-#location_component {
+#location-component {
   display: flex;
   flex-flow: column nowrap;
 }
 
-#neighbourhood_component {
+#neighbourhood-component {
   display: flex;
   flex-flow: column nowrap;
   height: calc(100% - 75px);
   margin-top: 15px;
 }
 
-#neighbourhood_list {
+#neighbourhood-list {
   height: calc(100% - 75px);
   margin: 5px 0 0 0;
   overflow-y: auto;
   padding-left: 5px;
 }
 
-#neighbourhood_list a {
+#neighbourhood-list a {
   color: steelblue;
 }
 
@@ -154,24 +153,23 @@ main {
   text-decoration: underline;
 }
 
-#no_results,
+#no-results,
 #loading {
   margin-top: 25%;
   text-align: center;
 }
 
 /* Map */
-
-.contact_details {
+.contact-details {
   max-width: calc(100vw - 60px);
   overflow-wrap: break-word;
 }
 
-.contact_details span {
+.contact-details span {
   font-weight: bold;
 }
 
-.contact_details ul {
+.contact-details ul {
   max-width: 350px;
   padding-left: 5px;
   width: calc(100% - 5px);

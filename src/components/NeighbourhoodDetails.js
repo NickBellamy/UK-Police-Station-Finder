@@ -51,7 +51,7 @@ const NeighbourhoodDetails = ({ hood }) => {
   }
 
   return (
-    <div className="contact_details">
+    <div className="contact-details">
       <h3>{hood.name}</h3>
       <ul>
         {contactList.map(contact => formatContact(contact)).map(contact => (

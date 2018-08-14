@@ -8,7 +8,7 @@ const NeighbourhoodInfo = ({
   setFilter,
   setNeighbourhood
 }) => (
-  <div id="neighbourhood_component">
+  <div id="neighbourhood-component">
     <h2>Neighbourhoods</h2>
     <input
       type="text"
@@ -27,7 +27,7 @@ const NeighbourhoodInfo = ({
 );
 
 const NeighbourhoodList = ({ filter, neighbourhood, setNeighbourhood }) => (
-  <ul id="neighbourhood_list">
+  <ul id="neighbourhood-list">
     {filter.neighbourhoods.map(hood => (
       <li key={hood.id}>
         <a
@@ -48,7 +48,7 @@ const Loading = () => (
   </div>
 );
 
-const NoResults = () => <div id="no_results">No results found!</div>;
+const NoResults = () => <div id="no-results">No results found!</div>;
 
 NeighbourhoodInfo.propTypes = {
   filter: PropTypes.object.isRequired,

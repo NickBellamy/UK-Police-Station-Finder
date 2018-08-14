@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const LocationSelector = ({ forceNames, setArea, area }) => (
-  <div id="location_component">
+  <div id="location-component">
     <h2>Location</h2>
     <select
       value={area}

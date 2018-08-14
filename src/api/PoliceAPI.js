@@ -2,7 +2,7 @@ import {
   alphabetiseArray,
   cleanAreaNames,
   cleanNeighbourhoodNames
-} from './helpers';
+} from '../helpers';
 
 const api = 'https://data.police.uk/api';
 

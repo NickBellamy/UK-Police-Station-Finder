@@ -44,7 +44,7 @@ const NeighbourhoodList = ({ filter, neighbourhood, setNeighbourhood }) => (
 
 const Loading = () => (
   <div id="loading">
-    <img src={require('./loading.gif')} alt="" />
+    <img src={require('../img/loading.gif')} alt="" />
   </div>
 );
 

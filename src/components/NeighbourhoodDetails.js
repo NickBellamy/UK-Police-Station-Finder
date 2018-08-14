@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { webLinkify, mailLinkify } from './helpers';
+import { webLinkify, mailLinkify } from '../helpers';
 
 const NeighbourhoodDetails = ({ hood }) => {
   //If possible, formats contact details as a link.

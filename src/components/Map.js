@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import NeighbourhoodDetails from './NeighbourhoodDetails'
-import apiConfig from './apiKeys';
+import apiConfig from '../api/apiKeys';
 import {
   InfoWindow,
   GoogleMap,

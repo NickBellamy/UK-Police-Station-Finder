@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import Header from './Header';
-import Map from './Map';
-import Sidebar from './Sidebar';
-import { getForces, getNeighbourhoods } from './PoliceAPI';
-import './App.css';
+import Header from './components/Header';
+import Map from './components/Map';
+import Sidebar from './components/Sidebar';
+import { getForces, getNeighbourhoods } from './api/PoliceAPI';
+import './css/App.css';
 
 export default class App extends Component {
   state = {

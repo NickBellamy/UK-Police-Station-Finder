@@ -71,6 +71,7 @@ React was used to build this app, with the help of the `create-react-app` npm pa
 * start the development server with `yarn start`
 
 
-## Create React App
+## Acknowledgements
 
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app). You can find more information on how to perform common tasks [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
+* Favicon provided by [Freepik](https://www.flaticon.com/authors/freepik) from [www.flaticon.com](https://www.flaticon.com).
+* Thanks to Kyle at Police Support for trying to fix the inconsistancies with the data served from the Police API... I know it took a while!

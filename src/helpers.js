@@ -1,3 +1,5 @@
+import React from 'react';
+
 export const cleanAreaNames = areas => {
   const disallowed = [
     ' Constabulary',
@@ -34,3 +36,11 @@ export const alphabetiseHoods = hoods =>
 // Replaces "&amp;" and " and " with "&"
 const convertToAmpersand = string =>
   string.replace(/&amp;/g, '&').replace(/ and /g, ' & ');
+
+export const webLinkify = url => (
+  <a href={url} target="_blank">
+    {url}
+  </a>
+);
+
+export const mailLinkify = email => (<a href={`mailto:${email}`}>{email}</a>);

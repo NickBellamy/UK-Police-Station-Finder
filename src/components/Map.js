@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import NeighbourhoodDetails from './NeighbourhoodDetails'
+import NeighbourhoodDetails from './NeighbourhoodDetails';
 import apiConfig from '../api/apiKeys';
 import {
   InfoWindow,
@@ -59,6 +59,8 @@ const RenderMap = withScriptjs(
               map.fitBounds(bounds)
             : //Else pan to selected neighbourhood or center of bounds
               map.panTo(neighbourhood.location || bounds.getCenter());
+          //If selected neighbourhood, pan slightly to make infowindow in center
+          neighbourhood.location && map.panBy(0, -150);
         }
       };
 

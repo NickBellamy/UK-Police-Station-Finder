@@ -53,7 +53,7 @@ export default class App extends Component {
 
   componentDidMount() {
     getForces()
-      .then(results => this.setState({ forces: results.map(force => force) }))
+      .then(forces => this.setState({ forces }))
       //This line hard codes in the default area to load when the app is
       //initialised.  It can be removed to give the user a chance to select
       //which area they want to browse initially.  The reason it is included

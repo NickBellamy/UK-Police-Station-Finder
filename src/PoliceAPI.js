@@ -1,5 +1,5 @@
 import {
-  alphabetiseHoods,
+  alphabetiseArray,
   cleanAreaNames,
   cleanNeighbourhoodNames
 } from './helpers';
@@ -42,5 +42,5 @@ export const getNeighbourhoods = area => {
 
   return setNeighbourhoodIds(area)
     .then(() => getNeighbourhoodData())
-    .then(neighbourhoods => alphabetiseHoods(neighbourhoods));
+    .then(neighbourhoods => alphabetiseArray(neighbourhoods, 'name'));
 };

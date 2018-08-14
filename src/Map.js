@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import StationDetails from './StationDetails'
+import NeighbourhoodDetails from './NeighbourhoodDetails'
 import apiConfig from './apiKeys';
 import {
   InfoWindow,
@@ -83,7 +83,7 @@ const RenderMap = withScriptjs(
                     this.map.panTo(bounds.getCenter());
                   }}
                 >
-                  <StationDetails hood={hood} />
+                  <NeighbourhoodDetails hood={hood} />
                 </InfoWindow>
               )}
             </Marker>

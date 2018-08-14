@@ -1,31 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const StationDetails = ({ hood }) => {
-  //TODO: Refactor this monstrosity!
+const NeighbourhoodDetails = ({ hood }) => {
   const renderContact = contact => {
     if (contact.type === 'twitter') {
-      if (contact.details.includes('twitter.com')) {
-        return {
-          type: contact.type,
-          details: (
-            //Replace '/#!' in url to make Surrey police twitter links work properly
-            <a href={contact.details.replace('/#!', '')} target="blank">
-              {contact.details.replace('/#!', '')}
-            </a>
-          )
-        };
-      } else {
-        return {
-          type: contact.type,
-          details: (
-            <a
-              href={`https://twitter.com/${contact.details}`}
-              target="blank"
-            >{`https://twitter.com/${contact.details}`}</a>
-          )
-        };
-      }
+      !contact.details.includes('twitter.com') &&
+        (contact.details = `https://twitter.com/${contact.details}`);
+      //Replace '/#!' in url to make Surrey police twitter links work properly
+      contact.details = contact.details.replace('/#!', '');
+      return {
+        type: contact.type,
+        details: (
+          <a href={contact.details} target="blank">
+            {contact.details}
+          </a>
+        )
+      };
     } else if (
       (contact.details.includes('.uk') || contact.details.includes('.co')) &&
       !contact.details.includes('@') &&
@@ -87,8 +77,8 @@ const StationDetails = ({ hood }) => {
   );
 };
 
-StationDetails.propTypes = {
+NeighbourhoodDetails.propTypes = {
   hood: PropTypes.object.isRequired
 };
 
-export default StationDetails;
+export default NeighbourhoodDetails;

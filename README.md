@@ -25,7 +25,7 @@ This project is part of the Udacity Nanodegree program.  No starting code was pr
 
 * Application utilizes the Google Maps API or another mapping system and at least one non-Google third-party API
 * All data requests are retrieved in an asynchronous manner using either the Fetch API or XMLHttpRequest
-* Data requests that fail are handled gracefully using common fallback techniques (i.e. AJAX error or fail methods). 'Gracefully' means the user isn’t left wondering why a component isn’t working. If an API doesn’t load there should be some visible indication on the page that it didn’t load
+* Data requests that provide no data, show a visual indication that no data has been retrieved.
 
 **Documentation**
 
@@ -47,7 +47,7 @@ This project is part of the Udacity Nanodegree program.  No starting code was pr
 
 **Offline Use**
 
-* When available in the browser, the site uses a service worker to cache responses to requests for site assets. Visited pages are rendered when there is no network access
+* When available in the browser, the site uses a service worker to cache responses to requests for site assets. Visited pages are rendered when there is no network access. Note - this point only applies for projects with hardcoded locations.  As this project relies on pulling the locations from the police API, it was not necessary to cache these locations, therefore offline functionality is limited.
 
 
 ## Technologies used
@@ -110,4 +110,4 @@ googleMapURL={`https://maps.googleapis.com/maps/api/js?key=[YOUR KEY HERE]`}
 ## Acknowledgements
 
 * Favicon provided by [Freepik](https://www.flaticon.com/authors/freepik) from [www.flaticon.com](https://www.flaticon.com).
-* Thanks to Kyle at Police Support for trying to fix the inconsistancies with the data served from the Police API... I know it took a while!
+* Thanks to Kyle at Police Support for trying to fix the inconsistencies with the data served from the Police API... I know it took a while!

@@ -1,5 +1,7 @@
 # Uk Police Station Finder Project
 
+**Due to changes in the request limit of the police API, this project no longer functions, and so is no longer maintained.**
+
 This is a web app that allows the user to find the contact details of their local police station.  Once the user has selected a general area of the UK, they can filter through the neighbourhood names, or use the map to select the marker - selecting a neighbourhood marker triggers a pop up box with the contact information of that neighbourhood's local police station.  The design of the app has been constructed so that it should work well on both desktop and mobile devices 
 
 This project is part of the Udacity Nanodegree program.  No starting code was provided - any code outside of installed npm packages is all my own work.
